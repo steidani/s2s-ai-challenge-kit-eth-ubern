@@ -1,7 +1,37 @@
 name: "base"
 channels:
   - defaults
-# dependencies:
-# - add packages here
-# - one per line
+dependencies:
+  - xarray
+  - dask
+  # ML
+  - tensorflow
+  - pytorch
+  - sklearn
+  # viz
+  - matplotlib
+  - cartopy
+  # scoring
+  - xskillscore
+  # data access
+  - intake
+  - fsspec
+  - zarr
+  - s3fs
+  - intake-xarray
+  - cfgrib
+  - pydap
+  - cftime
+  - h5netcdf
+  - netcdf4==1.5.1  # see https://github.com/pydata/xarray/issues/4925
+  - pip
+  - pip:
+    - climetlab
+    - climetlab_s2s_ai_challenge
+    - configargparse # for weatherbench
+    - rechunker
+    - git+https://github.com/xarray-contrib/xskillscore.git
+    - git+https://github.com/phausamann/sklearn-xarray.git@develop
+    #- dask-labextension
+    #- nb_black
 prefix: "/opt/conda"
