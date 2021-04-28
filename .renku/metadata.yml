@@ -1,0 +1,30 @@
+'@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+'@type':
+- http://schema.org/Project
+- http://www.w3.org/ns/prov#Location
+http://schema.org/agent: 0.14.2
+http://schema.org/creator:
+  '@id': mailto:aaron.spring@mpimet.mpg.de
+  '@type':
+  - http://schema.org/Person
+  - http://www.w3.org/ns/prov#Person
+  http://schema.org/affiliation: null
+  http://schema.org/alternateName: null
+  http://schema.org/email: aaron.spring@mpimet.mpg.de
+  http://schema.org/name: Aaron Spring
+  http://www.w3.org/2000/01/rdf-schema#label: Aaron Spring
+http://schema.org/dateCreated: '2021-04-28T12:48:48.162011+00:00'
+http://schema.org/name: s2s-ai-challenge-template
+http://schema.org/schemaVersion: '8'
+https://swissdatasciencecenter.github.io/renku-ontology#automatedTemplateUpdate: false
+https://swissdatasciencecenter.github.io/renku-ontology#immutableTemplateFiles: []
+https://swissdatasciencecenter.github.io/renku-ontology#templateId: python-minimal
+https://swissdatasciencecenter.github.io/renku-ontology#templateMetadata: '{"__template_source__":
+  "https://github.com/SwissDataScienceCenter/renku-project-template", "__template_ref__":
+  "0.1.19", "__template_id__": "python-minimal", "__namespace__": "aaron.spring",
+  "__automated_update__": true, "__repository__": "https://renkulab.io/gitlab", "__sanitized_project_name__":
+  "s2s-ai-challenge-template", "__project_slug__": "aaron.spring/s2s-ai-challenge-template",
+  "description": "template to contribute to s2s-ai-challenge", "name": "s2s-ai-challenge-template"}'
+https://swissdatasciencecenter.github.io/renku-ontology#templateReference: 0.1.19
+https://swissdatasciencecenter.github.io/renku-ontology#templateSource: https://github.com/SwissDataScienceCenter/renku-project-template
+https://swissdatasciencecenter.github.io/renku-ontology#templateVersion: 817b03c0f434a79eb54473688c1f897a66228b3d
