@@ -1,7 +1,7 @@
 # S2S AI Challenge Template
 
 This is a template repository with running examples how to join and contribute to
-the s2s-ai-challenge. You were likely refered here from https://s2s-ai-challenge.github.io/.
+the s2s-ai-challenge. You were likely referred here from https://s2s-ai-challenge.github.io/.
 
 ## Introduction
 
