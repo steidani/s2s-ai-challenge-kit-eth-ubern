@@ -63,13 +63,23 @@ using training data from https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge
 
 ### 7. Let the Machine Learning model perform subseasonal 2020 predictions
 and save them as `netcdf` files.
+The submissions have to placed in the `submissions` folder with filename `submission_your_choice.nc`,
+see [example](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/submissions/submission_rb_prediction_2020.nc).
 
 ### 8. `git commit` training pipeline and netcdf submission
 For later verification of the organizers, reproducibility and scoring of submissions,
-the training notebook/pipeline and submission file ML_prediction.nc with `git lfs`. 
+the training notebook/pipeline and submission file ML_prediction.nc with `git lfs`.
+After commiting, `git tag submission-method_name-number`
+```bash
+git lfs track "*.nc" # once, already done in template
+git add submissions/submission_my_method.nc
+git commit -m "commit submission for my_method"
+git tag "submission-my_method-0.0.1" # if this is to be checked by scorer
+git push --tags
+```
 
 ### 9. RPSS scoring by `scorer` bot
-The `scorer` will fetch your predictions, score them with RPSS against recalibrated ECMWF real-time forecasts.
+The `scorer` will fetch your tagged submissions, score them with RPSS against recalibrated ECMWF real-time forecasts.
 Your score will be added to the leaderboard at https://s2s-ai-challenge.github.io/#leaderboard
 
 ## More information
