@@ -7,7 +7,7 @@ dependencies:
   # ML
   - tensorflow
   - pytorch
-  - sklearn
+  - scikit-learn
   # viz
   - matplotlib
   - cartopy
