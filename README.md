@@ -13,7 +13,7 @@ a `Dockerfile`.
 ## Join the challenge
 
 ### 1. The simplest way to join the S2S AI Challenge is forking this renku project.
-(Ensure you do not fork the gitlab repository, but the reku project).
+Ensure you do not fork the gitlab repository, but the renku project.
 
 Fork this template renku project from https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/settings.
 
@@ -67,6 +67,9 @@ the training notebook/pipeline and submission file ML_prediction.nc with `git lf
 ### 9. RPSS scoring by `scorer` bot
 The `scorer` will fetch your predictions, score them with RPSS against recalibrated ECMWF real-time forecasts.
 Your score will be added to the leaderboard at https://s2s-ai-challenge.github.io/#leaderboard
+
+## More information
+in the [wiki](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/wikis/Home)
 
 ## Changing interactive environment dependencies
 
