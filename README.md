@@ -1,7 +1,11 @@
 # S2S AI Challenge Template
 
 This is a template repository with running examples how to join and contribute to
-the s2s-ai-challenge. You were likely referred here from https://s2s-ai-challenge.github.io/.
+the s2s-ai-challenge.
+
+You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
+
+Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
 
 ## Introduction
 
