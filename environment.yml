@@ -3,7 +3,7 @@ channels:
   - defaults
 dependencies:
   - xarray
-  - dask
+  #- dask
   # ML
   - tensorflow
   - pytorch
