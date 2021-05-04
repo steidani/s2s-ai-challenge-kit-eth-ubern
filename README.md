@@ -63,10 +63,15 @@ If the docker image fails initially, please re-build docker or touch the `enviro
 
 To work with the project anywhere outside the Renku platform,
 click the `Settings` tab where you will find the
-git repo URLs - use `git` to clone the project on whichever machine you want.
+renku project URLs - use `renku clone` to clone the project on whichever machine you want.
+Install [renku first with `pipx`](https://renku-python.readthedocs.io/en/latest/installation.html),
+and then `renku clone https://renkulab.io/gitlab/$YOURNAME/s2s-ai-challenge-$GROUPNAME.git`
 
 ### 7. Train your Machine Learning model
-using training data via [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge) or renku datasets
+getting training data via 
+- [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
+- [renku datasets](https://renku.readthedocs.io/en/stable/user/data.html)
+- IRIDL: [temperature](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.temperature/.daily/) and accumulated [precipitation](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.UNIFIED_PRCP/.GAUGE_BASED/.GLOBAL/.v1p0/.extREALTIME/.rain)
 
 ### 8. Let the Machine Learning model perform subseasonal 2020 predictions
 and save them as `netcdf` files.
