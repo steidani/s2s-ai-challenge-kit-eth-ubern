@@ -21,56 +21,63 @@ Checklist:
 
 ## Steps
 
-1. Fork this `s2s-ai-challenge-template` repository [https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template).
+### 1. Fork this `s2s-ai-challenge-template` repository [https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template).
 
-2. Clone your fork locally using `git <https://git-scm.com/>`_, connect your repository
-   to the upstream (main project), and create a branch::
+### 2. Clone your fork locally using `git <https://git-scm.com/>`_, connect your repository
+   to the upstream (main project), and create a branch:
 
-    $ git clone https://renkulab.io/gitlab/$YOURNAME/s2s-ai-challenge-template.git
-    $ cd s2s-ai-challenge-template
-    $ git remote add upstream https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template.git
+```bash
+git clone https://renkulab.io/gitlab/$YOURNAME/s2s-ai-challenge-template.git
+cd s2s-ai-challenge-template
+git remote add upstream https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template.git
+```
 
-    # now, to fix a bug or add feature create your own branch off "main":
+### 3. To fix a bug or add feature create your own branch off "master":
 
-    $ git checkout -b your-bugfix-feature-branch-name master
+```bash
+git checkout -b your-bugfix-feature-branch-name master
+```
 
-   If you need some help with Git, follow this quick start
-   `guide <https://git.wiki.kernel.org/index.php/QuickStart>`_.
+If you need some help with Git, follow this quick start
+`guide <https://git.wiki.kernel.org/index.php/QuickStart>`_.
 
-3. Install dependencies into a new conda environment::
+### 4. Install dependencies into a new conda environment::
 
-    $ conda env create -f environment.yml  # rename name: "base" to name: "s2s-ai"
-    $ conda activate "s2s-ai"
+```bash
+conda env create -f environment.yml  # rename name: "base" to name: "s2s-ai"
+conda activate "s2s-ai"
+```
 
+Now you have an environment called ``s2s-ai`` that you can work in.
+You’ll need to make sure to activate that environment next time you want
+to use it after closing the terminal or your system.
 
-   Now you have an environment called ``s2s-ai`` that you can work in.
-   You’ll need to make sure to activate that environment next time you want
-   to use it after closing the terminal or your system.
+### 5. Break your edits up into reasonably sized commits::
 
-4. Break your edits up into reasonably sized commits::
+```bash
+git commit -a -m "<commit message>"
+git push -u
+```
 
-    $ git commit -a -m "<commit message>"
-    $ git push -u
+### 6. Create a new changelog entry in ``CHANGELOG.md``:
 
-5. Create a new changelog entry in ``CHANGELOG.md``:
+The entry should be entered as: tbd
 
-   - The entry should be entered as: tbd
+<description> (``:pr:`#<pull request number>```) ```<author's names>`_``
 
-    <description> (``:pr:`#<pull request number>```) ```<author's names>`_``
+where ``<description>`` is the description of the PR related to the change and
+``<pull request number>`` is the pull request number and ``<author's names>`` are your first
+and last names.
 
-    where ``<description>`` is the description of the PR related to the change and
-    ``<pull request number>`` is the pull request number and ``<author's names>`` are your first
-    and last names.
+Add yourself to list of authors at the end of ``CHANGELOG.md`` file if not there yet, in
+alphabetical order.
 
-   - Add yourself to list of authors at the end of ``CHANGELOG.md`` file if not there yet, in
-     alphabetical order.
+### 7. Open your MR on renkulab.io/gitlab under [https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/merge_requests](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/merge_requests).
 
-6. Open your MR on renkulab.io/gitlab under [https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/merge_requests](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/merge_requests).
+- Document your MR
+- List closing issues
+- Add references
+- Show improvement
    
-   - Document your MR
-   - List closing issues
-   - Add references
-   - Show improvement
-   
-7. Your MR will be review and eventually merged by a maintainer.
+### 8. Your MR will be review and eventually merged by a maintainer.
 
