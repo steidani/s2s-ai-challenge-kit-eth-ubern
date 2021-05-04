@@ -6,7 +6,7 @@ the `s2s-ai-challenge`.
 You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
 
 The competition starts in June, so examples are still work in progress
-and joining the competition not possible until then.
+and joining the competition not possible until then, but you can already look around.
 
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
 
