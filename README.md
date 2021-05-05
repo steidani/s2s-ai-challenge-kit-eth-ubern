@@ -92,7 +92,9 @@ git push --tags
 
 ### 10. RPSS scoring by `scorer` bot
 The `scorer` will fetch your tagged submissions, score them with RPSS against recalibrated ECMWF real-time forecasts.
-Your score will be added to the leaderboard at https://s2s-ai-challenge.github.io/#leaderboard
+Your score will be added to the [leaderboard](https://s2s-ai-challenge.github.io/#leaderboard).
+
+The `scorer` is not active for the competition yet.
 
 ## More information
 in the [wiki](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/wikis/Home)
