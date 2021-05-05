@@ -52,7 +52,7 @@ for submissions.
 
 ## Contribute
 
-### 6. Start jupyter
+### 6. Start jupyter on renku or locally
 The simplest way to contribute is right from the Renku platform - 
 just click on the `Environments` tab in your renku project and start a new session.
 This will start an interactive environment right in your browser.
