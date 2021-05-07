@@ -39,6 +39,9 @@ Under "Settings" - "General" - "Visibility" you can set your project private.
 
 Now other people cannot steal your idea/code.
 
+Now please modify the README in your fork with team details and a
+description of your method.
+
 ### 4. Add the `scorer` user to your repo with Reporter permissions
 The scorer is not yet ready, but will follow this [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/notebooks/verification_RPSS.ipynb).
 
