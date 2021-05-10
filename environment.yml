@@ -5,7 +5,7 @@ dependencies:
   - xarray
   # ML
   - tensorflow
-  - pytorch
+  #- pytorch
   # viz
   - matplotlib-base=3.3
   # - cartopy
@@ -16,7 +16,7 @@ dependencies:
   - fsspec
   - zarr
   - s3fs
-  - intake-xarray
+  #- intake-xarray
   - cfgrib
   - pydap
   - cftime
