@@ -72,9 +72,13 @@ Install [renku first with `pipx`](https://renku-python.readthedocs.io/en/latest/
 and then `renku clone https://renkulab.io/gitlab/$YOURNAME/s2s-ai-challenge-$GROUPNAME.git`
 
 ### 7. Train your Machine Learning model
-getting training data via 
+
+Get training data via 
 - [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
 - [renku datasets](https://renku.readthedocs.io/en/stable/user/data.html)
+
+Get corresponding observations/ground truth:
+- [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
 - IRIDL: [temperature](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.temperature/.daily/) and accumulated [precipitation](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.UNIFIED_PRCP/.GAUGE_BASED/.GLOBAL/.v1p0/.extREALTIME/.rain)
 
 ### 8. Let the Machine Learning model perform subseasonal 2020 predictions
