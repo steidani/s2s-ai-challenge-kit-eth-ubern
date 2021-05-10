@@ -7,6 +7,7 @@ You were likely referred here from the [public website](https://s2s-ai-challenge
 
 The competition starts in June, so examples are still work in progress
 and joining the competition not possible until then, but you can already look around.
+If you fork this project before June, please rebase or fork again in June.
 
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
 
