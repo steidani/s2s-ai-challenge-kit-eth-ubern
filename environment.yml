@@ -2,7 +2,7 @@ name: "base"
 channels:
   - defaults
 dependencies:
-  - xarray
+  - xarray=0.17.1
   # ML
   - tensorflow
   #- pytorch
