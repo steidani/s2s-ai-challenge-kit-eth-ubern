@@ -7,7 +7,7 @@ dependencies:
   - tensorflow
   - pytorch
   # viz
-  - matplotlib
+  - matplotlib-base=3.3
   # - cartopy
   # scoring
   - xskillscore  # includes sklearn
