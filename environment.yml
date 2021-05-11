@@ -12,7 +12,7 @@ dependencies:
   # scoring
   - xskillscore  # includes sklearn
   # data access
-  - intake
+  - intake==0.6.1
   - fsspec
   - zarr
   - s3fs
