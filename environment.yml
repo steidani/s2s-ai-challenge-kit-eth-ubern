@@ -2,17 +2,17 @@ name: "base"
 channels:
   - defaults
 dependencies:
-  - xarray==0.17
+  - xarray
   # ML
   - tensorflow
   #- pytorch
   # viz
-  - matplotlib-base=3.3
+  - matplotlib-base
   # - cartopy
   # scoring
   - xskillscore  # includes sklearn
   # data access
-  - intake==0.6.1
+  - intake
   - fsspec
   - zarr
   - s3fs
@@ -28,7 +28,7 @@ dependencies:
     - climetlab_s2s_ai_challenge
     - configargparse # for weatherbench
     - rechunker
-    - git+https://github.com/xarray-contrib/xskillscore.git
+    # - git+https://github.com/xarray-contrib/xskillscore.git
     - git+https://github.com/phausamann/sklearn-xarray.git@develop
     #- dask-labextension
     #- nb_black
