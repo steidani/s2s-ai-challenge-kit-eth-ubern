@@ -51,6 +51,8 @@ In the gitlab repository, under "Settings" -> "CI/CD" -> "Variables", add the
 `COMPETITION` key with value `S2S-AI`, so the `scorer` bot knows where to search
 for submissions.
 
+todo: probably not needed instead ensure that project/repo has a certain `tag`
+
 <img src="docs/screenshots/gitlab_variables.png" width="300">
 <img src="docs/screenshots/gitlab_add_variable.png" width="300">
 
@@ -92,7 +94,7 @@ the training notebook/pipeline and submission file ML_prediction.nc with `git lf
 After commiting, `git tag submission-method_name-number`
 ```bash
 git lfs track "*.nc" # once, already done in template
-git add submissions/submission_my_method.nc
+git add submissions/ML_prediction_2020.nc
 git commit -m "commit submission for my_method"
 git tag "submission-my_method-0.0.1" # if this is to be checked by scorer
 git push --tags
