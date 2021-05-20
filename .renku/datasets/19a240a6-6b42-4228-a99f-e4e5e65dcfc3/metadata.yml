@@ -1,0 +1,1060 @@
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.947475+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zgroup
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.908169+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zgroup
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zgroup
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zgroup@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zgroup
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zgroup
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zmetadata
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.068095+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zmetadata
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zmetadata
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zmetadata@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zmetadata
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zmetadata
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.578381+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.303306+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.418026+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': '0'
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:07:00.057108+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.979118+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:07:00.019042+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': '0'
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:52.901529+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:52.820482+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:52.866550+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': '0'
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.041928+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:52.954869+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.005192+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': '0'
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.874965+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.811517+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.837703+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': '0'
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.773508+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.737372+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.564445+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.0.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.437254+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.0.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:58.755873+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.1.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.637389+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.1.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.712449+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.2.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.601196+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.2.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.224943+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.3.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.526598+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.3.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:59.674312+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.4.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:58.998811+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.4.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:57.933075+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:57.897231+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.975300+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.0.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.790789+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.0.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.663937+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.1.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:57.726488+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.1.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:57.859551+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.2.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:56.224578+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.2.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.753163+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.3.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.827102+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.3.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:57.833167+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.4.0.0
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.0
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.1
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:53.720532+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': 0.0.4.0.1
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.1
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.1@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.1
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.1
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zarray
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:58.475358+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zarray
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zarray
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zarray@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zarray
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zarray
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zattrs
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:58.247952+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': .zattrs
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zattrs
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zattrs@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zattrs
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zattrs
+- '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/DigitalDocument
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:06:57.989739+00:00'
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/name:
+  - '@value': '0.0'
+  http://schema.org/url:
+  - '@value': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/files/blob/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0@9f53563fdb224cc3aff0661735ba1db1b24e9ff0
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0
+  https://swissdatasciencecenter.github.io/renku-ontology#external:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#source:
+  - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0
+- '@id': https://renkulab.io/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  '@type':
+  - http://purl.org/wf4ever/wfprov#Artifact
+  - http://schema.org/Dataset
+  - http://www.w3.org/ns/prov#Entity
+  http://schema.org/alternateName:
+  - '@value': ecmwf_forecast-input_2020_biweekly_deterministic
+  http://schema.org/creator:
+  - '@id': mailto:aaron.spring@mpimet.mpg.de
+  http://schema.org/dateCreated:
+  - '@value': '2021-05-20T14:05:38.685532+00:00'
+  http://schema.org/hasPart:
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/longitude/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zmetadata
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/forecast_time/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.3.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.0.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.1.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.4.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/0.0.2.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/tp/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.3.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.0.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.1.0.1
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.4.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/0.0.2.0.0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/t2m/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/realization/.zarray
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zgroup
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zattrs
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0
+  - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray
+  http://schema.org/identifier:
+  - '@value': 19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  http://schema.org/isPartOf:
+  - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  http://schema.org/keywords: []
+  http://schema.org/name:
+  - '@value': ecmwf_forecast-input_2020_biweekly_deterministic
+  http://schema.org/subjectOf: []
+  http://schema.org/url:
+  - '@value': https://renkulab.io/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': 19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  http://www.w3.org/ns/prov#atLocation:
+  - '@value': .renku/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+- '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+  '@type':
+  - http://schema.org/Project
+  - http://www.w3.org/ns/prov#Location
+  http://schema.org/agent:
+  - '@value': 0.14.2
+  http://schema.org/creator:
+  - '@id': mailto:aaron.spring@mpimet.mpg.de
+  http://schema.org/dateCreated:
+  - '@value': '2021-04-28T12:48:48.162011+00:00'
+  http://schema.org/name:
+  - '@value': s2s-ai-challenge-template
+  http://schema.org/schemaVersion:
+  - '@value': '8'
+  https://swissdatasciencecenter.github.io/renku-ontology#automatedTemplateUpdate:
+  - '@value': false
+  https://swissdatasciencecenter.github.io/renku-ontology#immutableTemplateFiles: []
+  https://swissdatasciencecenter.github.io/renku-ontology#templateId:
+  - '@value': python-minimal
+  https://swissdatasciencecenter.github.io/renku-ontology#templateMetadata:
+  - '@value': '{"__template_source__": "https://github.com/SwissDataScienceCenter/renku-project-template",
+      "__template_ref__": "0.1.19", "__template_id__": "python-minimal", "__namespace__":
+      "aaron.spring", "__automated_update__": true, "__repository__": "https://renkulab.io/gitlab",
+      "__sanitized_project_name__": "s2s-ai-challenge-template", "__project_slug__":
+      "aaron.spring/s2s-ai-challenge-template", "description": "template to contribute
+      to s2s-ai-challenge", "name": "s2s-ai-challenge-template"}'
+  https://swissdatasciencecenter.github.io/renku-ontology#templateReference:
+  - '@value': 0.1.19
+  https://swissdatasciencecenter.github.io/renku-ontology#templateSource:
+  - '@value': https://github.com/SwissDataScienceCenter/renku-project-template
+  https://swissdatasciencecenter.github.io/renku-ontology#templateVersion:
+  - '@value': 817b03c0f434a79eb54473688c1f897a66228b3d
+- '@id': mailto:aaron.spring@mpimet.mpg.de
+  '@type':
+  - http://schema.org/Person
+  - http://www.w3.org/ns/prov#Person
+  http://schema.org/email:
+  - '@value': aaron.spring@mpimet.mpg.de
+  http://schema.org/name:
+  - '@value': aaronspring
+  - '@value': Aaron Spring
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - '@value': aaronspring
+  - '@value': Aaron Spring
