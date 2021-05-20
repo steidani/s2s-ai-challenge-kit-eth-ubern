@@ -1,3 +1,13 @@
 **/*.zarr/** filter=lfs diff=lfs merge=lfs -text
 *.nc filter=lfs diff=lfs merge=lfs -text
 data/hindcast-like-observations_2000-2019_biweekly_tercile-edges.nc filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/tp/0.3.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/t2m/0.3.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/t2m/0.0.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/t2m/0.4.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/t2m/0.2.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/tp/0.1.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/t2m/0.1.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/tp/0.0.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/tp/0.4.0.0 filter=lfs diff=lfs merge=lfs -text
+data/forecast-like-observations_2020_biweekly_deterministic.zarr/tp/0.2.0.0 filter=lfs diff=lfs merge=lfs -text
