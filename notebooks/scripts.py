@@ -1,6 +1,8 @@
 import xarray as xr
 import pandas as pd
 
+cache_path = '../data'
+
 def add_valid_time_from_forecast_reference_time_and_lead_time(benchmark, init_dim='forecast_time'):
     """Creates valid_time(forecast_time, lead_time).
     
