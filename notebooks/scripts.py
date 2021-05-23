@@ -47,3 +47,72 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
         ds_p['tp'] = ds_p['tp'].where(tp_arid_mask)
     # ds_p = ds_p * 100 # in percent %
     return ds_p
+
+
+def print_RPS_per_year(preds):
+    """Returns pd.Dataframe of RPS per year."""
+    # similar verification_RPSS.ipynb
+    # as scorer bot
+    import xarray as xr
+    import xskillscore as xs
+    import pandas as pd
+    import numpy as np
+    xr.set_options(keep_attrs=True)
+    
+    # from root
+    #renku storage pull data/forecast-like-observations_2020_biweekly_terciled.nc
+    #renku storage pull data/hindcast-like-observations_2000-2019_biweekly_terciled.nc
+    
+    if 2020 in preds.forecast_time.dt.year:
+        obs_p = xr.open_dataset(f'{cache_path}/forecast-like-observations_2020_biweekly_terciled.nc').sel(forecast_time=preds.forecast_time)
+    else:
+        obs_p = xr.open_dataset(f'{cache_path}/hindcast-like-observations_2000-2019_biweekly_terciled.zarr', engine='zarr').sel(forecast_time=preds.forecast_time)
+
+    # ML probabilities
+    fct_p = preds
+    
+    ## RPSS
+    # rps_ML
+    rps_ML = xs.rps(obs_p, fct_p, category_edges=None, dim=[], input_distributions='p').compute()
+    rps_ML = rps_ML.groupby('forecast_time.year').mean()
+    
+    rpss = rps_ML
+    
+    # cleaning
+    # check for -inf grid cells
+    if (rpss==-np.inf).to_array().any():
+        (rpss == rpss.min()).sum()
+
+        # dirty fix
+        rpss = rpss.clip(-1, 1)
+
+    mask = xr.ones_like(rpss.isel(lead_time=0,drop=True)).reset_coords(drop=True).t2m
+    boundary_tropics = 30
+    mask = xr.concat([mask.where(mask.latitude > boundary_tropics),
+                    mask.where(np.abs(mask.latitude) <= boundary_tropics),
+                    mask.where((mask.latitude < -boundary_tropics) & (mask.latitude > -60))],'area')
+    mask = mask.assign_coords(area=['northern_extratropics', 'tropics', 'southern_extratropics'])
+    mask.name='area'
+
+    mask = mask.where(rpss.t2m.isel(lead_time=0,drop=True).notnull())
+    
+    # weighted area mean
+    weights = np.cos(np.deg2rad(np.abs(mask.latitude)))
+    scores = (rpss*mask).weighted(weights).mean('latitude').mean('longitude')
+    pd_scores = scores.reset_coords(drop=True).to_dataframe().unstack(0).round(2)
+    
+    # final score
+    scores = rpss.weighted(weights).mean('latitude').mean('longitude')
+    # spatially weighted score averaged over lead_times and variables to one single value
+    scores = scores.to_array().mean(['lead_time','variable'])
+    return scores.to_dataframe('RPS')
+
+def assert_predictions_2020(preds_test):
+    # is dataset
+    
+    # has both vars: tp and t2m
+    
+    # sizes
+    
+    # coords
+    pass
