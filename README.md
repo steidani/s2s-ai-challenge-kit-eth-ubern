@@ -21,7 +21,7 @@ a `Dockerfile`.
 ## Join the challenge
 
 ### 1. The simplest way to join the S2S AI Challenge is forking this renku project.
-Ensure you do not fork the gitlab repository, but the renku project.
+Ensure that you do not fork the gitlab repository, but the renku project.
 
 Fork this template renku project from https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/settings.
 
@@ -29,7 +29,11 @@ Fork this template renku project from https://renkulab.io/projects/aaron.spring/
 
 Name your fork `s2s-ai-challenge-$TEAMNAME`.
 
+Your fork will inherit the tags from the template repo. The tag `s2s-ai-challenge` is needed for the `scorer` bot to find your repo.
+
 ### 2. Fill our [registration form](https://docs.google.com/forms/d/1KEnATjaLOtV-o4N8PLinPXYnpba7egKsCCH_efriCb4).
+
+Registrations are not required before October 31st 2021, but highly [appreciated for the flow of information](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/4).
 
 ### 3. Make the project private
 
@@ -43,22 +47,16 @@ Now other people cannot steal your idea/code.
 Now please modify the README in your fork with team details and a
 description of your method.
 
+Please use different branches if you try out different methods. The scorer finds branches from all branches.
+
 ### 4. Add the `scorer` user to your repo with Reporter permissions
-The scorer is not yet ready, but will follow this [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/notebooks/verification_RPSS.ipynb).
+The scorer is not yet ready, but will follow this [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/verification_RPSS.ipynb).
 
-### 5. Add a gitlab variable with key `COMPETITION` and name `S2S-AI`
-In the gitlab repository, under "Settings" -> "CI/CD" -> "Variables", add the
-`COMPETITION` key with value `S2S-AI`, so the `scorer` bot knows where to search
-for submissions.
+Todo: How to add scorer to repo
 
-todo: probably not needed instead ensure that project/repo has a certain `tag`
+## Make Predictions
 
-<img src="docs/screenshots/gitlab_variables.png" width="300">
-<img src="docs/screenshots/gitlab_add_variable.png" width="300">
-
-## Contribute
-
-### 6. Start jupyter on renku or locally
+### 5. Start jupyter on renku or locally
 The simplest way to contribute is right from the Renku platform - 
 just click on the `Environments` tab in your renku project and start a new session.
 This will start an interactive environment right in your browser.
@@ -73,7 +71,7 @@ renku project URLs - use `renku clone` to clone the project on whichever machine
 Install [renku first with `pipx`](https://renku-python.readthedocs.io/en/latest/installation.html),
 and then `renku clone https://renkulab.io/gitlab/$YOURNAME/s2s-ai-challenge-$GROUPNAME.git`
 
-### 7. Train your Machine Learning model
+### 6. Train your Machine Learning model
 
 Get training data via 
 - [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
@@ -83,31 +81,34 @@ Get corresponding observations/ground truth:
 - [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
 - IRIDL: [temperature](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.temperature/.daily/) and accumulated [precipitation](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.UNIFIED_PRCP/.GAUGE_BASED/.GLOBAL/.v1p0/.extREALTIME/.rain)
 
-### 8. Let the Machine Learning model perform subseasonal 2020 predictions
+### 7. Let the Machine Learning model perform subseasonal 2020 predictions
 and save them as `netcdf` files.
 The submissions have to placed in the `submissions` folder with filename `submission_your_choice.nc`,
 see [example](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/submissions/submission_rb_prediction_2020.nc).
 
-### 9. `git commit` training pipeline and netcdf submission
-For later verification of the organizers, reproducibility and scoring of submissions,
-the training notebook/pipeline and submission file ML_prediction.nc with `git lfs`.
-After commiting, `git tag submission-method_name-number`
+### 8. `git commit` training pipeline and netcdf submission
+For later verification of the organizers and reviewers, reproducibility and scoring of submissions,
+the training notebook/pipeline and submission file `ML_prediction_2020.nc` must be committed with `git lfs`:
+
 ```bash
-git lfs track "*.nc" # once, already done in template
-git add submissions/ML_prediction_2020.nc
-git commit -m "commit submission for my_method"
-git tag "submission-my_method-0.0.1" # if this is to be checked by scorer
+# run your training and create file ../submissions/ML_prediction_2020.nc
+git lfs track "*.nc" # do once, already done in template
+git add ../submissions/ML_prediction_2020.nc
+git commit -m "commit submission for my_method_name" # whatever message you want
+git tag "submission-my_method_name-0.0.1" # if this is to be checked by scorer, only the last submitted==tagged version will be considered
 git push --tags
 ```
 
-### 10. RPSS scoring by `scorer` bot
+### 9. RPSS scoring by `scorer` bot
 The `scorer` will fetch your tagged submissions, score them with RPSS against recalibrated ECMWF real-time forecasts.
-Your score will be added to the private [leaderboard](https://s2s-ai-challenge.github.io/#leaderboard), which will be made public in early November 2021.
+Your score will be added to the private leaderboard, which will be made public in early November 2021.
 
 The `scorer` is not active for the competition yet.
 
 ## More information
-in the [wiki](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/wikis/Home)
+
+- in the [`s2s-ai-challenge` wiki](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Home)
+- all different resources for this [competition](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
 
 ## Changing interactive environment dependencies
 
