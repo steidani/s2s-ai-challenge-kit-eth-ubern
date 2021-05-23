@@ -1,3 +1,8 @@
+- '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2F00ada7f6-ec35-4226-9814-d90f94d01710
+  '@type':
+  - http://schema.org/URL
+  http://schema.org/url:
+  - '@id': https://renkulab.io/datasets/00ada7f6-ec35-4226-9814-d90f94d01710
 - '@id': https://renkulab.io/blob/e0fc197030c1ffe62b8b3a6618e7ec1256cb95a5/data/hindcast-like-observations_2000_2019_biweekly_terciled.zarr/.zattrs
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
@@ -1090,7 +1095,7 @@
   - '@value': false
   https://swissdatasciencecenter.github.io/renku-ontology#source:
   - '@value': data/hindcast-like-observations_2000_2019_biweekly_terciled.zarr/weekofyear/0
-- '@id': https://renkulab.io/datasets/00ada7f6-ec35-4226-9814-d90f94d01710
+- '@id': https://renkulab.io/datasets/38f5bb4b-4057-4949-8ad8-b0303e91ca7a
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
   - http://schema.org/Dataset
@@ -1100,7 +1105,7 @@
   http://schema.org/creator:
   - '@id': mailto:aaron.spring@mpimet.mpg.de
   http://schema.org/dateCreated:
-  - '@value': '2021-05-20T14:08:35.055885+00:00'
+  - '@value': '2021-05-23T11:07:09.362651+00:00'
   http://schema.org/hasPart:
   - '@id': https://renkulab.io/blob/e0fc197030c1ffe62b8b3a6618e7ec1256cb95a5/data/hindcast-like-observations_2000_2019_biweekly_terciled.zarr/lead_time/.zattrs
   - '@id': https://renkulab.io/blob/e0fc197030c1ffe62b8b3a6618e7ec1256cb95a5/data/hindcast-like-observations_2000_2019_biweekly_terciled.zarr/lead_time/0
@@ -1155,7 +1160,7 @@
   - '@id': https://renkulab.io/blob/e0fc197030c1ffe62b8b3a6618e7ec1256cb95a5/data/hindcast-like-observations_2000_2019_biweekly_terciled.zarr/latitude/0
   - '@id': https://renkulab.io/blob/e0fc197030c1ffe62b8b3a6618e7ec1256cb95a5/data/hindcast-like-observations_2000_2019_biweekly_terciled.zarr/latitude/.zarray
   http://schema.org/identifier:
-  - '@value': 00ada7f6-ec35-4226-9814-d90f94d01710
+  - '@value': 38f5bb4b-4057-4949-8ad8-b0303e91ca7a
   http://schema.org/isPartOf:
   - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   http://schema.org/keywords: []
@@ -1163,11 +1168,13 @@
   - '@value': hindcast-like-observations_2000_2019_biweekly_terciled
   http://schema.org/subjectOf: []
   http://schema.org/url:
-  - '@value': https://renkulab.io/datasets/00ada7f6-ec35-4226-9814-d90f94d01710
+  - '@value': https://renkulab.io/datasets/38f5bb4b-4057-4949-8ad8-b0303e91ca7a
   http://www.w3.org/2000/01/rdf-schema#label:
-  - '@value': 00ada7f6-ec35-4226-9814-d90f94d01710
+  - '@value': 38f5bb4b-4057-4949-8ad8-b0303e91ca7a
   http://www.w3.org/ns/prov#atLocation:
   - '@value': .renku/datasets/00ada7f6-ec35-4226-9814-d90f94d01710
+  http://www.w3.org/ns/prov#wasDerivedFrom:
+  - '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2F00ada7f6-ec35-4226-9814-d90f94d01710
 - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   '@type':
   - http://schema.org/Project
