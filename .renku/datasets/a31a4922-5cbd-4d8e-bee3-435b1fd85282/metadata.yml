@@ -1,3 +1,16 @@
+- '@id': https://localhost/datasettags/0.1%40e6ef313e5633d2cdb97455fcbfdafbd8d38e2605
+  '@type':
+  - http://schema.org/PublicationEvent
+  http://schema.org/about:
+  - '@value': s2s-ai-challenge
+  http://schema.org/description:
+  - '@value': 'v0.1: initial_t2m_tp_ecmwf_obs'
+  http://schema.org/location:
+  - '@value': e6ef313e5633d2cdb97455fcbfdafbd8d38e2605
+  http://schema.org/name:
+  - '@value': '0.1'
+  http://schema.org/startDate:
+  - '@value': '2021-05-24T15:34:09.986028+00:00'
 - '@id': https://localhost/datasettags/0.1_initial_t2m_tp_ecmwf_obs%40d885e6b9935c147920923f30da3ca77db6166b48
   '@type':
   - http://schema.org/PublicationEvent
@@ -11799,6 +11812,7 @@
   http://schema.org/subjectOf:
   - '@id': https://localhost/datasettags/0.1_initial_t2m_tp_ecmwf_obs%40d885e6b9935c147920923f30da3ca77db6166b48
   - '@id': https://localhost/datasettags/v0.1%40581b4a3666973831bac92459b6fb0da705e7c276
+  - '@id': https://localhost/datasettags/0.1%40e6ef313e5633d2cdb97455fcbfdafbd8d38e2605
   http://schema.org/url:
   - '@value': https://renkulab.io/datasets/1b6ed739-a52f-44fd-bcf5-21b7a1996709
   http://www.w3.org/2000/01/rdf-schema#label:
