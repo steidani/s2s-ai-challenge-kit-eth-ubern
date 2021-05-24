@@ -1,3 +1,8 @@
+- '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2F19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  '@type':
+  - http://schema.org/URL
+  http://schema.org/url:
+  - '@id': https://renkulab.io/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
 - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/.zattrs
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
@@ -943,7 +948,7 @@
   - '@value': false
   https://swissdatasciencecenter.github.io/renku-ontology#source:
   - '@value': data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/valid_time/0.0
-- '@id': https://renkulab.io/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+- '@id': https://renkulab.io/datasets/102f33ae-0f31-4c92-991b-8719a907ae96
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
   - http://schema.org/Dataset
@@ -953,7 +958,7 @@
   http://schema.org/creator:
   - '@id': mailto:aaron.spring@mpimet.mpg.de
   http://schema.org/dateCreated:
-  - '@value': '2021-05-20T14:05:38.685532+00:00'
+  - '@value': '2021-05-24T15:18:21.626781+00:00'
   http://schema.org/hasPart:
   - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/.zattrs
   - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/lead_time/0
@@ -1001,7 +1006,7 @@
   - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/0
   - '@id': https://renkulab.io/blob/9f53563fdb224cc3aff0661735ba1db1b24e9ff0/data/ecmwf_forecast-input_2020_biweekly_deterministic.zarr/latitude/.zarray
   http://schema.org/identifier:
-  - '@value': 19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  - '@value': 102f33ae-0f31-4c92-991b-8719a907ae96
   http://schema.org/isPartOf:
   - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   http://schema.org/keywords: []
@@ -1009,11 +1014,13 @@
   - '@value': ecmwf_forecast-input_2020_biweekly_deterministic
   http://schema.org/subjectOf: []
   http://schema.org/url:
-  - '@value': https://renkulab.io/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  - '@value': https://renkulab.io/datasets/102f33ae-0f31-4c92-991b-8719a907ae96
   http://www.w3.org/2000/01/rdf-schema#label:
-  - '@value': 19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  - '@value': 102f33ae-0f31-4c92-991b-8719a907ae96
   http://www.w3.org/ns/prov#atLocation:
   - '@value': .renku/datasets/19a240a6-6b42-4228-a99f-e4e5e65dcfc3
+  http://www.w3.org/ns/prov#wasDerivedFrom:
+  - '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2F19a240a6-6b42-4228-a99f-e4e5e65dcfc3
 - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   '@type':
   - http://schema.org/Project
