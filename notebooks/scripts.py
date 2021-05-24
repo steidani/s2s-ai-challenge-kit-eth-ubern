@@ -149,8 +149,8 @@ def assert_predictions_2020(preds_test):
     # size
     from dask.utils import format_bytes
     size_in_MB = float(format_bytes(preds_test.nbytes).replace(' MiB',''))
-    assert size_in_MB > 100
-    assert size_in_MB < 200
+    assert size_in_MB > 50
+    assert size_in_MB < 250
     
     # no other dims
     assert set(preds_test.dims) - {'category', 'forecast_time', 'latitude', 'lead_time', 'longitude'} == set()
