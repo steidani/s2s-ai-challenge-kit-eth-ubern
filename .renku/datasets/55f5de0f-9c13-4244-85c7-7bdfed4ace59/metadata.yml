@@ -1,3 +1,8 @@
+- '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2F55f5de0f-9c13-4244-85c7-7bdfed4ace59
+  '@type':
+  - http://schema.org/URL
+  http://schema.org/url:
+  - '@id': https://renkulab.io/datasets/55f5de0f-9c13-4244-85c7-7bdfed4ace59
 - '@id': https://renkulab.io/blob/c03859a5fc6dcc5bed2de3db28970992a9c5982a/data/forecast-like-observations_2020_biweekly_terciled.nc
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
@@ -19,7 +24,7 @@
   - '@value': false
   https://swissdatasciencecenter.github.io/renku-ontology#source:
   - '@value': data/forecast-like-observations_2020_biweekly_terciled.nc
-- '@id': https://renkulab.io/datasets/55f5de0f-9c13-4244-85c7-7bdfed4ace59
+- '@id': https://renkulab.io/datasets/43e0b6ed-6f8e-466a-9e70-458d99db54dd
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
   - http://schema.org/Dataset
@@ -29,11 +34,11 @@
   http://schema.org/creator:
   - '@id': mailto:aaron.spring@mpimet.mpg.de
   http://schema.org/dateCreated:
-  - '@value': '2021-05-20T14:07:32.914233+00:00'
+  - '@value': '2021-05-24T15:19:04.306247+00:00'
   http://schema.org/hasPart:
   - '@id': https://renkulab.io/blob/c03859a5fc6dcc5bed2de3db28970992a9c5982a/data/forecast-like-observations_2020_biweekly_terciled.nc
   http://schema.org/identifier:
-  - '@value': 55f5de0f-9c13-4244-85c7-7bdfed4ace59
+  - '@value': 43e0b6ed-6f8e-466a-9e70-458d99db54dd
   http://schema.org/isPartOf:
   - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   http://schema.org/keywords: []
@@ -41,11 +46,13 @@
   - '@value': forecast-like-observations_2020_biweekly_terciled
   http://schema.org/subjectOf: []
   http://schema.org/url:
-  - '@value': https://renkulab.io/datasets/55f5de0f-9c13-4244-85c7-7bdfed4ace59
+  - '@value': https://renkulab.io/datasets/43e0b6ed-6f8e-466a-9e70-458d99db54dd
   http://www.w3.org/2000/01/rdf-schema#label:
-  - '@value': 55f5de0f-9c13-4244-85c7-7bdfed4ace59
+  - '@value': 43e0b6ed-6f8e-466a-9e70-458d99db54dd
   http://www.w3.org/ns/prov#atLocation:
   - '@value': .renku/datasets/55f5de0f-9c13-4244-85c7-7bdfed4ace59
+  http://www.w3.org/ns/prov#wasDerivedFrom:
+  - '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2F55f5de0f-9c13-4244-85c7-7bdfed4ace59
 - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   '@type':
   - http://schema.org/Project
