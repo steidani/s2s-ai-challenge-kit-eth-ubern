@@ -1,3 +1,8 @@
+- '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2Fccb2b0a4-1798-40d3-b405-a42183cde5df
+  '@type':
+  - http://schema.org/URL
+  http://schema.org/url:
+  - '@id': https://renkulab.io/datasets/ccb2b0a4-1798-40d3-b405-a42183cde5df
 - '@id': https://renkulab.io/blob/9e20becad3a9b0e600aff5effd6127eb7df1e5cb/data/ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr/.zattrs
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
@@ -4261,7 +4266,7 @@
   - '@value': false
   https://swissdatasciencecenter.github.io/renku-ontology#source:
   - '@value': data/ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr/valid_time/0.0
-- '@id': https://renkulab.io/datasets/ccb2b0a4-1798-40d3-b405-a42183cde5df
+- '@id': https://renkulab.io/datasets/ee8979be-99d3-46cd-aa7a-ba666722a3da
   '@type':
   - http://purl.org/wf4ever/wfprov#Artifact
   - http://schema.org/Dataset
@@ -4271,7 +4276,7 @@
   http://schema.org/creator:
   - '@id': mailto:aaron.spring@mpimet.mpg.de
   http://schema.org/dateCreated:
-  - '@value': '2021-05-20T13:52:15.080055+00:00'
+  - '@value': '2021-05-24T15:21:26.266629+00:00'
   http://schema.org/hasPart:
   - '@id': https://renkulab.io/blob/9e20becad3a9b0e600aff5effd6127eb7df1e5cb/data/ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr/lead_time/.zattrs
   - '@id': https://renkulab.io/blob/9e20becad3a9b0e600aff5effd6127eb7df1e5cb/data/ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr/lead_time/0
@@ -4477,7 +4482,7 @@
   - '@id': https://renkulab.io/blob/9e20becad3a9b0e600aff5effd6127eb7df1e5cb/data/ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr/latitude/0
   - '@id': https://renkulab.io/blob/9e20becad3a9b0e600aff5effd6127eb7df1e5cb/data/ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr/latitude/.zarray
   http://schema.org/identifier:
-  - '@value': ccb2b0a4-1798-40d3-b405-a42183cde5df
+  - '@value': ee8979be-99d3-46cd-aa7a-ba666722a3da
   http://schema.org/isPartOf:
   - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   http://schema.org/keywords: []
@@ -4485,11 +4490,13 @@
   - '@value': ecmwf_hindcast-input_2000-2019_biweekly_deterministic
   http://schema.org/subjectOf: []
   http://schema.org/url:
-  - '@value': https://renkulab.io/datasets/ccb2b0a4-1798-40d3-b405-a42183cde5df
+  - '@value': https://renkulab.io/datasets/ee8979be-99d3-46cd-aa7a-ba666722a3da
   http://www.w3.org/2000/01/rdf-schema#label:
-  - '@value': ccb2b0a4-1798-40d3-b405-a42183cde5df
+  - '@value': ee8979be-99d3-46cd-aa7a-ba666722a3da
   http://www.w3.org/ns/prov#atLocation:
   - '@value': .renku/datasets/ccb2b0a4-1798-40d3-b405-a42183cde5df
+  http://www.w3.org/ns/prov#wasDerivedFrom:
+  - '@id': https://localhost/urls/%2F%2Frenkulab.io%2Fdatasets%2Fccb2b0a4-1798-40d3-b405-a42183cde5df
 - '@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
   '@type':
   - http://schema.org/Project
