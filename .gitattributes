@@ -436,3 +436,4 @@ data/hindcast-like-observations_2000-2019_biweekly_terciled.zarr/tp/0.0.5.0.0 fi
 data/hindcast-like-observations_2000-2019_biweekly_terciled.zarr/t2m/0.0.8.0.0 filter=lfs diff=lfs merge=lfs -text
 data/hindcast-like-observations_2000-2019_biweekly_terciled.zarr/t2m/0.0.7.0.0 filter=lfs diff=lfs merge=lfs -text
 data/hindcast-like-observations_2000-2019_biweekly_terciled.zarr/t2m/0.0.3.0.0 filter=lfs diff=lfs merge=lfs -text
+data/ecmwf_recalibrated_benchmark_2020_biweekly_terciled.nc filter=lfs diff=lfs merge=lfs -text
