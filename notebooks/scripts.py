@@ -40,7 +40,7 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
         bn = bn.mean(member_dim)
         an = an.mean(member_dim)
         n = n.mean(member_dim)
-    ds_p = xr.concat([bn, n, an],'category').assign_coords(category=['below normal', 'normal', 'above normal'])
+    ds_p = xr.concat([bn, n, an],'category').assign_coords(category=['below normal', 'near normal', 'above normal'])
     if mask is not None:
         ds_p = ds_p.where(mask)
     if 'tp' in ds_p.data_vars:
@@ -142,7 +142,7 @@ def assert_predictions_2020(preds_test):
     assert (lead_time == preds_test['lead_time']).all()
     
     # category
-    cat = np.array(['below normal', 'normal', 'above normal'], dtype='<U12')
+    cat = np.array(['below normal', 'near normal', 'above normal'], dtype='<U12')
     category = xr.DataArray(cat, dims='category', coords={'category': cat})
     assert (category == preds_test['category']).all()
     
