@@ -2,6 +2,7 @@
 
 ### 2021-05-26 !4
 
+- update `README` how to join competition
 - git lfs track zarr: `git lfs track "**/*.zarr/**"`
 - add notebooks:
     - create renku datasets: `renku_datasets_biweekly.ipynb`
