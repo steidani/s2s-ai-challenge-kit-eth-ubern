@@ -13,15 +13,18 @@ Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron
 
 ## Introduction
 
-This is a Renku project - basically a git repository with some
-bells and whistles. You'll find we have already created some
-useful things like `data` and `notebooks` directories and
+This is a Renku project. Renku is a platform for reproducible and collaborative data analysis.
+At its simplest a Renku project is a gitlab repository with added functionality.
+So you can use this project just as a gitlab repository if you wish. However, you may be surprised
+by what Renku has to offer and if you are curious the best place to start is the
+[Renku documentation](https://renku.readthedocs.io/en/latest/).
+You'll find we have already created some useful things like `data` and `notebooks` directories and
 a `Dockerfile`.
 
 ## Join the challenge
 
 ### 1. The simplest way to join the S2S AI Challenge is forking this renku project.
-Ensure you do not fork the gitlab repository, but the renku project.
+Ensure you fork the gitlab repository through the renkulab.io page.
 
 Fork this template renku project from https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/settings.
 
@@ -33,7 +36,7 @@ Name your fork `s2s-ai-challenge-$TEAMNAME`.
 
 ### 3. Make the project private
 
-Now check out the gitlab repository by clicking on "View in gitlab".
+Now navigate to the gitlab page by clicking on "View in gitlab" in the upper right corner.
 Under "Settings" - "General" - "Visibility" you can set your project private.
 
 <img src="docs/screenshots/gitlab_visibility.png" width="300">
@@ -44,21 +47,11 @@ Now please modify the README in your fork with team details and a
 description of your method.
 
 ### 4. Add the `scorer` user to your repo with Reporter permissions
-The scorer is not yet ready, but will follow this [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/notebooks/verification_RPSS.ipynb).
-
-### 5. Add a gitlab variable with key `COMPETITION` and name `S2S-AI`
-In the gitlab repository, under "Settings" -> "CI/CD" -> "Variables", add the
-`COMPETITION` key with value `S2S-AI`, so the `scorer` bot knows where to search
-for submissions.
-
-todo: probably not needed instead ensure that project/repo has a certain `tag`
-
-<img src="docs/screenshots/gitlab_variables.png" width="300">
-<img src="docs/screenshots/gitlab_add_variable.png" width="300">
+The scorer is not yet ready, but will follow this [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/notebooks/verification_RPSS.ipynb). The scorer's username on gitlab is `s2saichallengescorer`. You should add it to your project with `Reporter` permissions. The scorer will only ever clone your repository and evaluate your submission. It will never make any changes to your code.
 
 ## Contribute
 
-### 6. Start jupyter on renku or locally
+### 5. Start jupyter on renku or locally
 The simplest way to contribute is right from the Renku platform - 
 just click on the `Environments` tab in your renku project and start a new session.
 This will start an interactive environment right in your browser.
@@ -85,13 +78,21 @@ Get corresponding observations/ground truth:
 
 ### 8. Let the Machine Learning model perform subseasonal 2020 predictions
 and save them as `netcdf` files.
-The submissions have to placed in the `submissions` folder with filename `submission_your_choice.nc`,
-see [example](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/submissions/submission_rb_prediction_2020.nc).
+The submissions have to placed in the `submissions` folder with filename `ML_prediction_2020.nc`,
+see [example](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/submissions/ML_prediction_2020.nc).
 
 ### 9. `git commit` training pipeline and netcdf submission
-For later verification of the organizers, reproducibility and scoring of submissions,
-the training notebook/pipeline and submission file ML_prediction.nc with `git lfs`.
-After commiting, `git tag submission-method_name-number`
+For later verification by the organizers, reproducibility and scoring of submissions,
+commit the training notebook/pipeline and submission file 
+`submissions/ML_prediction_2020.nc` with `git lfs`.
+After committing, `git tag submission-method_name-number`. The automated scorer will
+evaulate any tag (regardless of which branch it is on) that starts with the word `submission`
+followed by any other combination of characters. In other words, any tags that satisfy the
+regex `^submission.*` will be evaluated by the scorer. In addition, the scorer will only look for the
+results in a file named `ML_prediction_2020.nc` located in the `submissions` folder
+at the root of each competitor's repository.
+
+Here is an example of a set of commands that would commit the results and add the scorer tag.
 ```bash
 git lfs track "*.nc" # once, already done in template
 git add submissions/ML_prediction_2020.nc
