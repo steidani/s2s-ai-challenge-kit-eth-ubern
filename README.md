@@ -24,7 +24,7 @@ a `Dockerfile`.
 ## Join the challenge
 
 ### 1. The simplest way to join the S2S AI Challenge is forking this renku project.
-Ensure you fork the gitlab repository through the renkulab.io page.
+Ensure you fork the renku project and the underlying gitlab repository through the renkulab.io page.
 
 Fork this template renku project from https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template/settings.
 
@@ -43,11 +43,13 @@ Under "Settings" - "General" - "Visibility" you can set your project private.
 
 Now other people cannot steal your idea/code.
 
-Now please modify the README in your fork with team details and a
+Please modify the `README` in your fork with your team's details and a
 description of your method.
 
+Please use different branches if you try out different methods. The scorer finds branches from all branches.
+
 ### 4. Add the `scorer` user to your repo with Reporter permissions
-The scorer is not yet ready, but will follow this [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/notebooks/verification_RPSS.ipynb). The scorer's username on gitlab is `s2saichallengescorer`. You should add it to your project with `Reporter` permissions. The scorer will only ever clone your repository and evaluate your submission. It will never make any changes to your code.
+The scorer follows the code shown in the [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/verification_RPSS.ipynb). The scorer's username on gitlab is `s2saichallengescorer`. You should add it to your project with `Reporter` permissions. Under "Members" - "Invite Members" - "GitLab member or Email address", add `s2saichallengescorer`. The scorer will only ever clone your repository and evaluate your submission. It will never make any changes to your code.
 
 ## Contribute
 
