@@ -52,8 +52,8 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
     return ds_p
 
 
-def print_RPS_per_year(preds):
-    """Returns pd.Dataframe of RPS per year."""
+def skill_by_year(preds):
+    """Returns pd.Dataframe of RPS per year. Todo: make RPSS."""
     # similar verification_RPSS.ipynb
     # as scorer bot but returns a score for each year
     import xarray as xr
