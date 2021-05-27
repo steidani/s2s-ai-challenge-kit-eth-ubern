@@ -12,24 +12,20 @@ dependencies:
   # scoring
   - xskillscore  # includes sklearn
   # data access
-  - intake
-  - fsspec
+  #- intake
+  #- fsspec
   - zarr
   - s3fs
   #- intake-xarray
   - cfgrib
   #- pydap
-  - h5netcdf
+  #- h5netcdf
   # - netcdf4#==1.5.1  # see https://github.com/pydata/xarray/issues/4925
   - pip
   - pip:
-    - climetlab
-    - climetlab_s2s_ai_challenge
+    - climetlab >= 0.7.0
+    - climetlab_s2s_ai_challenge >= 0.6.2
     - configargparse # for weatherbench
-    - rechunker
     - netcdf4 # ==1.5.1  # see https://github.com/pydata/xarray/issues/4925
-    # - git+https://github.com/xarray-contrib/xskillscore.git
     - git+https://github.com/phausamann/sklearn-xarray.git@develop
-    #- dask-labextension
-    #- nb_black
 prefix: "/opt/conda"
