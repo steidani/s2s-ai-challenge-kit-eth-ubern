@@ -35,7 +35,7 @@ Name your fork `s2s-ai-challenge-$TEAMNAME`.
 
 When cloning this repository and you do not want to immediately download the `git lfs`-backed [renku datasets](https://renku.readthedocs.io/projects/renku-python/en/v0.4.0/cli.html#module-renku.cli.dataset), please use:
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 renku/git clone https://renkulab.io/projects/$YOURNAME/s2s-ai-challenge-$TEAMNAME
+GIT_LFS_SKIP_SMUDGE=1 renku/git clone https://renkulab.io/projects/$YOURNAME/s2s-ai-challenge-$TEAMNAME.git
 ```
 
 To be able to pull future changes from the [template](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template) into your repository, add an `upstream`:
