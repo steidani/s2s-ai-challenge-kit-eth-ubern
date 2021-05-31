@@ -53,7 +53,7 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
 
 
 def skill_by_year(preds):
-    """Returns pd.Dataframe of RPS per year. Todo: make RPSS."""
+    """Returns pd.Dataframe of RPSS per year."""
     # similar verification_RPSS.ipynb
     # as scorer bot but returns a score for each year
     import xarray as xr
@@ -74,12 +74,20 @@ def skill_by_year(preds):
     # ML probabilities
     fct_p = preds
     
+    # climatology
+    clim_p = xr.DataArray([1/3, 1/3, 1/3], dims='category', coords={'category':['below normal', 'near normal', 'above normal']}).to_dataset(name='tp')
+    clim_p['t2m'] = clim_p['tp']
+    
     ## RPSS
     # rps_ML
     rps_ML = xs.rps(obs_p, fct_p, category_edges=None, dim=[], input_distributions='p').compute()
-    rps_ML = rps_ML.groupby('forecast_time.year').mean()
+    # rps_clim
+    rps_clim = xs.rps(obs_p, clim_p, category_edges=None, dim='forecast_time', input_distributions='p').compute()
+    # rpss
+    rpss = 1 - rps_ML / rps_clim
     
-    rpss = rps_ML
+    rpss = rpss.groupby('forecast_time.year').mean()
+    
     
     # cleaning
     # check for -inf grid cells
@@ -88,6 +96,7 @@ def skill_by_year(preds):
 
         # dirty fix
         rpss = rpss.clip(-1, 1)
+    # what to do with requested grid cells where NaN is submitted? also penalize, todo: https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/7
 
     mask = xr.ones_like(rpss.isel(lead_time=0, drop=True)).reset_coords(drop=True).t2m
     boundary_tropics = 30
@@ -101,14 +110,10 @@ def skill_by_year(preds):
     
     # weighted area mean
     weights = np.cos(np.deg2rad(np.abs(mask.latitude)))
-    scores = (rpss*mask).weighted(weights).mean('latitude').mean('longitude')
-    pd_scores = scores.reset_coords(drop=True).to_dataframe().unstack(0).round(2)
-    
-    # final score
-    scores = rpss.weighted(weights).mean('latitude').mean('longitude')
     # spatially weighted score averaged over lead_times and variables to one single value
+    scores = (rpss * mask).weighted(weights).mean('latitude').mean('longitude')
     scores = scores.to_array().mean(['lead_time', 'variable'])
-    return scores.to_dataframe('RPS')
+    return scores.to_dataframe('RPSS')
 
 
 def assert_predictions_2020(preds_test):
