@@ -4,6 +4,10 @@ This is a template repository with running examples how to join and contribute t
 the `s2s-ai-challenge`.
 
 You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
+
+If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
+Major changes will be also announced on the [challenge website](https://s2s-ai-challenge.github.io/#announcements). The template will have release tags.
+
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
 
 If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
@@ -48,9 +52,6 @@ git remote add upstream git@gitlab.com:aaron.spring/s2s-ai-challenge-template.gi
 git pull upstream master
 ```
 
-Major changes will be also announced on the [challenge website](https://s2s-ai-challenge.github.io/#announcements). The template will have release tags.
-
-
 ### 2. Fill our [registration form](https://docs.google.com/forms/d/1KEnATjaLOtV-o4N8PLinPXYnpba7egKsCCH_efriCb4).
 
 Registrations are not required before October 31st 2021, but highly [appreciated for the flow of information](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/4).
@@ -72,9 +73,18 @@ description of your method.
 ### 4. Add the `scorer` user to your repo with Reporter permissions
 The scorer follows the code shown in the [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/verification_RPSS.ipynb). The scorer's username on gitlab is `s2saichallengescorer`. You should add it to your project with `Reporter` permissions. Under "Members" - "Invite Members" - "GitLab member or Email address", add `s2saichallengescorer`. The scorer will only ever clone your repository and evaluate your submission. It will never make any changes to your code.
 
+### 5. Add the `s2s-ai-challenge` topic to your repository
+To add the project topic navigate to `Settings` -> `General` and then fill in the word `s2s-ai-challenge` in the 
+`Topics` field near the top of the page. If you have multiple topics you can separate them by commas.
+
+This allows your repository to be recognized as a participant of the competition. Without
+this project topic or if you have not added the scorer as a member of your project 
+the automated scoring bot will not evaluate any of your submissions and none of your code
+or results will be considered for the competition.
+
 ## Make Predictions
 
-### 5. Start jupyter on renku or locally
+### 6. Start jupyter on renku or locally
 The simplest way to contribute is right from the Renku platform - 
 just click on the `Environments` tab in your renku project and start a new session.
 This will start an interactive environment right in your browser.
@@ -89,7 +99,7 @@ renku project URLs - use `renku clone` to clone the project on whichever machine
 Install [renku first with `pipx`](https://renku-python.readthedocs.io/en/latest/installation.html),
 and then `renku clone https://renkulab.io/gitlab/$YOURNAME/s2s-ai-challenge-$GROUPNAME.git`
 
-### 6. Train your Machine Learning model
+### 7. Train your Machine Learning model
 
 Get training data via 
 - [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
@@ -99,16 +109,21 @@ Get corresponding observations/ground truth:
 - [climetlab](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge)
 - IRIDL: [temperature](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.temperature/.daily/) and accumulated [precipitation](http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.UNIFIED_PRCP/.GAUGE_BASED/.GLOBAL/.v1p0/.extREALTIME/.rain)
 
-### 7. Let the Machine Learning model perform subseasonal 2020 predictions
+### 8. Let the Machine Learning model perform subseasonal 2020 predictions
 and save them as `netcdf` files.
 The submissions have to placed in the `submissions` folder with filename `ML_prediction_2020.nc`,
 see [example](https://renkulab.io/gitlab/aaron.spring/s2s-ai-competition-bootstrap/-/blob/master/submissions/ML_prediction_2020.nc).
 
 ### 9. `git commit` training pipeline and netcdf submission
 For later verification by the organizers, reproducibility and scoring of submissions,
-commit the training notebook/pipeline and submission file 
-`submissions/ML_prediction_2020.nc` with `git lfs`.
-After committing, `git tag submission-method_name-number`. The automated scorer will
+commit all code, input and output data. For the data files please use `git lfs`. 
+If you are unfamiliar with `git lfs` a short introduction can be found 
+[here](https://www.atlassian.com/git/tutorials/git-lfs).
+This is very important because the organizers need to review and reliably reproduce 
+your results. If your results cannot be reliably reproduced then you cannot win
+the competition - even if your submitted results had the highest score. 
+
+After committing, tag your submission and push your commit and tag. The automated scorer will
 evaulate any tag (regardless of which branch it is on) that starts with the word `submission`
 followed by any other combination of characters. In other words, any tags that satisfy the
 regex `^submission.*` will be evaluated by the scorer. In addition, the scorer will only look for the
@@ -118,14 +133,18 @@ at the root of each competitor's repository.
 Here is an example of a set of commands that would commit the results and add the scorer tag.
 ```bash
 # run your training and create file ../submissions/ML_prediction_2020.nc
-git lfs track "*.nc" # do once, already done in template
-git add ../submissions/ML_prediction_2020.nc
+git lfs track "*.nc" # this will ensure that all *nc files are using lfs and needs to be done only once
+git add submissions/ML_prediction_2020.nc
 git commit -m "commit submission for my_method_name" # whatever message you want
-git tag "submission-my_method_name-0.0.1" # if this is to be checked by scorer, only the last submitted==tagged version will be considered
+git tag "submission-my_method_name-0.0.1" # add this tag if this is to be evaluated by the scorer
 git push --tags
 ```
 
-### 9. RPSS scoring by `scorer` bot
+Please note that only submitted/tagged commits will be considered for the competition.
+If you have code that produces better results after the competition ends and it has
+not been tagged or is tagged after the competition closed then this will not be considered.
+
+### 10. RPSS scoring by `scorer` bot
 The `scorer` will fetch your tagged submissions, score them with RPSS against recalibrated ECMWF real-time forecasts.
 Your score will be added to the private leaderboard, which will be made public in early November 2021.
 
