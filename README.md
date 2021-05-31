@@ -4,11 +4,9 @@ This is a template repository with running examples how to join and contribute t
 the `s2s-ai-challenge`.
 
 You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
-
-If you have already forked this project before June 1st 2021, please fork again or pull recent changes:
-
-
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
+
+If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
 
 ## Introduction
 
@@ -31,7 +29,11 @@ Fork this template renku project from https://renkulab.io/projects/aaron.spring/
 
 Name your fork `s2s-ai-challenge-$TEAMNAME`.
 
-Please add the repository tag `s2s-ai-challenge`, which is needed for the `scorer` bot to find your repo.
+Please add the project/repository tag `s2s-ai-challenge`, which is needed for the `scorer` bot to find your repo.
+Under "Settings" in the renku project, please add `s2s-ai-challenge`:
+
+<img src="docs/screenshots/s2s-ai-challenge-tag.png" width="300">
+
 
 When cloning this repository and you do not want to immediately download the `git lfs`-backed [renku datasets](https://renku.readthedocs.io/projects/renku-python/en/v0.4.0/cli.html#module-renku.cli.dataset), please use:
 ```bash
