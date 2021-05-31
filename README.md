@@ -8,7 +8,7 @@ You were likely referred here from the [public website](https://s2s-ai-challenge
 If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
 Major changes will be also announced on the [challenge website](https://s2s-ai-challenge.github.io/#announcements). The template will have release tags.
 
-Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
+Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F).
 
 If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
 
@@ -43,7 +43,7 @@ To be able to pull future changes from the [template](https://renkulab.io/gitlab
 
 ```bash
 # in your fork locally
-git remote add upstream git@gitlab.com:aaron.spring/s2s-ai-challenge-template.git
+git remote add upstream git@renkulab.io:aaron.spring/s2s-ai-challenge-template.git
 git pull upstream master
 ```
 
