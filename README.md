@@ -5,9 +5,8 @@ the `s2s-ai-challenge`.
 
 You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
 
-The competition starts in June, so examples are still work in progress
-and joining the competition not possible until then, but you can already look around.
-If you fork this project before June, please rebase or fork again in June.
+If you have already forked this project before June 1st 2021, please fork again or pull recent changes:
+
 
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F)
 
@@ -32,7 +31,23 @@ Fork this template renku project from https://renkulab.io/projects/aaron.spring/
 
 Name your fork `s2s-ai-challenge-$TEAMNAME`.
 
-Your fork will inherit the tags from the template repo. The tag `s2s-ai-challenge` is needed for the `scorer` bot to find your repo.
+Please add the repository tag `s2s-ai-challenge`, which is needed for the `scorer` bot to find your repo.
+
+When cloning this repository and you do not want to immediately download the `git lfs`-backed [renku datasets](https://renku.readthedocs.io/projects/renku-python/en/v0.4.0/cli.html#module-renku.cli.dataset), please use:
+```bash
+GIT_LFS_SKIP_SMUDGE=1 renku/git clone https://renkulab.io/projects/$YOURNAME/s2s-ai-challenge-$TEAMNAME
+```
+
+To be able to pull future changes from the [template](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template) into your repository, add an `upstream`:
+
+```bash
+# in your fork locally
+git remote add upstream git@gitlab.com:aaron.spring/s2s-ai-challenge-template.git
+git pull upstream master
+```
+
+Major changes will be also announced on the [challenge website](https://s2s-ai-challenge.github.io/#announcements). The template will have release tags.
+
 
 ### 2. Fill our [registration form](https://docs.google.com/forms/d/1KEnATjaLOtV-o4N8PLinPXYnpba7egKsCCH_efriCb4).
 
@@ -50,7 +65,7 @@ Now other people cannot steal your idea/code.
 Please modify the `README` in your fork with your team's details and a
 description of your method.
 
-Please use different branches if you try out different methods. The scorer finds branches from all branches.
+
 
 ### 4. Add the `scorer` user to your repo with Reporter permissions
 The scorer follows the code shown in the [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/verification_RPSS.ipynb). The scorer's username on gitlab is `s2saichallengescorer`. You should add it to your project with `Reporter` permissions. Under "Members" - "Invite Members" - "GitLab member or Email address", add `s2saichallengescorer`. The scorer will only ever clone your repository and evaluate your submission. It will never make any changes to your code.
