@@ -43,7 +43,7 @@ To be able to pull future changes from the [template](https://renkulab.io/gitlab
 
 ```bash
 # in your fork locally
-git remote add upstream git@renkulab.io:aaron.spring/s2s-ai-challenge-template.git
+git remote add upstream https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template.git
 git pull upstream master
 ```
 
