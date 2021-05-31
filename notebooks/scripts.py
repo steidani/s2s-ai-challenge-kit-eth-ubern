@@ -92,26 +92,16 @@ def skill_by_year(preds):
     # cleaning
     # check for -inf grid cells
     if (rpss==-np.inf).to_array().any():
-        (rpss == rpss.min()).sum()
+        print(f'find N={(rpss == rpss.min()).sum()} -inf grid cells')
 
         # dirty fix
         rpss = rpss.clip(-1, 1)
     # what to do with requested grid cells where NaN is submitted? also penalize, todo: https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/7
-
-    mask = xr.ones_like(rpss.isel(lead_time=0, drop=True)).reset_coords(drop=True).t2m
-    boundary_tropics = 30
-    mask = xr.concat([mask.where(mask.latitude > boundary_tropics),
-                    mask.where(np.abs(mask.latitude) <= boundary_tropics),
-                    mask.where((mask.latitude < -boundary_tropics) & (mask.latitude > -60))],'area')
-    mask = mask.assign_coords(area=['northern_extratropics', 'tropics', 'southern_extratropics'])
-    mask.name = 'area'
-
-    mask = mask.where(rpss.t2m.isel(lead_time=0, drop=True).notnull())
     
     # weighted area mean
-    weights = np.cos(np.deg2rad(np.abs(mask.latitude)))
+    weights = np.cos(np.deg2rad(np.abs(rpss.latitude)))
     # spatially weighted score averaged over lead_times and variables to one single value
-    scores = (rpss * mask).weighted(weights).mean('latitude').mean('longitude')
+    scores = rpss.sel(latitude=slice(None, -60)).weighted(weights).mean('latitude').mean('longitude')
     scores = scores.to_array().mean(['lead_time', 'variable'])
     return scores.to_dataframe('RPSS')
 
