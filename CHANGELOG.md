@@ -1,16 +1,28 @@
 # CHANGELOG
 
-### 2021-05-26 !4
+### 2021-05-31: `v0.2` *release*
 
-- update `README` how to join competition
-- git lfs track zarr: `git lfs track "**/*.zarr/**"`
-- add notebooks:
+After this `v0.2` release, this CHANGELOG.md will describe all changes made in this template repository.
+
+- update `README` how to join competition, please `git pull` if you forked before
+- find status of your submission in `s2s-ai-competition-scoring-image` https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/blob/master/README.md 
+- calculate `RPSS` with respect to climatology (not ECMWF anymore)
+    - update `RPSS_verification.ipynb`
+    - update `scorer`: https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image
+    - Averaged ECMWF RPSS skill value to beat at least: -0.0070
+
+
+### 2021-05-26: `v0.1` *pre-release*
+
+- update `README` how to join competition !4
+- git lfs track zarr: `git lfs track "**/*.zarr/**"` !4
+- add notebooks: !4
     - create renku datasets: `renku_datasets_biweekly.ipynb`
     - RPSS verification: `RPSS_verification.ipynb`
     - ML train and predict based on weatherbench: `ML_train_and_predict.ipynb`
     - mean bias reduction: `mean_bias_reduction.ipynb`
     - template for training and predictions: `ML_forecast_template.ipynb`
-- add renku dataset `s2s-ai-challenge` with files:
+- add renku dataset `s2s-ai-challenge` with files: !4
     - `hindcast-like-observations_2000-2019_biweekly_deterministic.zarr`
     - `forecast-like-observations_2020_biweekly_deterministic.zarr`
     - `hindcast-like-observations_2000-2019_biweekly_tercile-edges.nc`
@@ -19,10 +31,10 @@
     - `ecmwf_forecast-input_2020_biweekly_deterministic.zarr`
     - `ecmwf_hindcast-input_2000-2019_biweekly_deterministic.zarr`
     - `ecmwf_recalibrated_benchmark_2020_biweekly_terciled.nc`
-- add reproducibility section below in training
+- add reproducibility section below in training !4
 - how to deal with this dry mask? provide as renku dataset? now implicitly masked in categorized observations `obs_p`
-- justify if training takes more than a week
-- show RPS for all years ToDo: take RPSS
+- justify if training takes more than a week !4
+- show RPS for all years. ToDo: take RPSS #4
 
 
 
