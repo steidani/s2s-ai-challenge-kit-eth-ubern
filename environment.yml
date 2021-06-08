@@ -21,7 +21,7 @@ dependencies:
   - nc-time-axis
   - pydap
   - h5netcdf
-  - netcdf4==1.5.3
+  - netcdf4
   - pip
   - pip:
     - climetlab >= 0.7.0

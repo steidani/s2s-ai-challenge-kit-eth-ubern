@@ -11,7 +11,7 @@
         - `IRIDL` including overview, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
     - SubX-Project models: `IRIDL` including overview, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
     - How to access password-protected S2S-Project output from IRIDL with xarray? see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
-- fix `netcdf4` version to `1.5.4` for `opendap` to work lazily with `xarray` (!2, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
+- fix `netcdf4` version to `1.5.4` for `opendap` to work lazily with `xarray` (!2, !7, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 
 
 ### 2021-05-31: `v0.2` *release*
