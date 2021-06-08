@@ -5,27 +5,27 @@ dependencies:
   - xarray
   # ML
   - tensorflow
-  #- pytorch
+  - pytorch
   # viz
   - matplotlib-base
   # - cartopy
   # scoring
-  - xskillscore  # includes sklearn
+  - xskillscore>=0.0.20  # includes sklearn
   # data access
-  #- intake
-  #- fsspec
+  - intake
+  - fsspec
   - zarr
   - s3fs
-  #- intake-xarray
+  - intake-xarray
   - cfgrib
-  #- pydap
-  #- h5netcdf
-  # - netcdf4#==1.5.1  # see https://github.com/pydata/xarray/issues/4925
+  - nc-time-axis
+  - pydap
+  - h5netcdf
+  - netcdf4==1.5.3
   - pip
   - pip:
     - climetlab >= 0.7.0
     - climetlab_s2s_ai_challenge >= 0.6.3
     - configargparse # for weatherbench
-    - netcdf4 # ==1.5.1  # see https://github.com/pydata/xarray/issues/4925
-    - git+https://github.com/phausamann/sklearn-xarray.git@develop
+    - netcdf4==1.5.4
 prefix: "/opt/conda"
