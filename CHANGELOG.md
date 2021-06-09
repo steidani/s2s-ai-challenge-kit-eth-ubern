@@ -2,6 +2,7 @@
 
 ### unreleased
 
+- Fix typo in safeguards in [ML_forecast_template.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/ML_forecast_template.ipynb): "We did NOT use `test` explicitly in training or implicitly in incrementally adjusting parameters."" (!8, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Add notebooks showcasing accessing output of different models from different sources: (!2, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
     - S2S-Project models:
         - from from European Weather Cloud:
