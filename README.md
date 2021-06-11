@@ -7,15 +7,7 @@ the `s2s-ai-challenge`.
 
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F).
 
-## Introduction
-
-This is a Renku project. Renku is a platform for reproducible and collaborative data analysis.
-At its simplest a Renku project is a gitlab repository with added functionality.
-So you can use this project just as a gitlab repository if you wish. However, you may be surprised
-by what Renku has to offer and if you are curious the best place to start is the
-[Renku documentation](https://renku.readthedocs.io/en/latest/).
-You'll find we have already created some useful things like `data` and `notebooks` directories and
-a `Dockerfile`.
+Here we should provide a summary of our project.
 
 ## Join the challenge
 
