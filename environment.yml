@@ -1,4 +1,4 @@
-name: "base"
+name: "s2s-ai-challenge"
 channels:
   - defaults
 dependencies:
