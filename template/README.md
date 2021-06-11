@@ -1,9 +1,13 @@
-# S2S AI Challenge
+# S2S AI Challenge z
 
-This is the repository of the team KIT-ETH-UBERN for
+This is a template repository with running examples how to join and contribute to
 the `s2s-ai-challenge`.
 
-[challenge website](https://s2s-ai-challenge.github.io/).
+You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
+
+If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
+Major changes will be also announced on the [challenge website](https://s2s-ai-challenge.github.io/#announcements).
+This template repository will have release tags for orientation.
 
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F).
 
