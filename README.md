@@ -64,7 +64,7 @@ description of your method.
 
 
 
-### 4. Add the `scorer` user to your repo with Reporter permissions
+### 4. Add the `s2saichallengescorer` user to your repo with Reporter permissions
 The scorer follows the code shown in the [verification notebook](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/verification_RPSS.ipynb). The scorer's username on gitlab is `s2saichallengescorer`. You should add it to your project with `Reporter` permissions. Under "Members" - "Invite Members" - "GitLab member or Email address", add `s2saichallengescorer`. The scorer will only ever clone your repository and evaluate your submission. It will never make any changes to your code.
 
 ### 5. Add the `s2s-ai-challenge` topic to your repository
@@ -127,10 +127,11 @@ at the root of each competitor's repository.
 Here is an example of a set of commands that would commit the results and add the scorer tag.
 ```bash
 # run your training and create file ../submissions/ML_prediction_2020.nc
-git lfs track "*.nc" # this will ensure that all *nc files are using lfs and needs to be done only once
-git add submissions/ML_prediction_2020.nc
+git lfs track "*.nc"  # this will ensure that all *nc files are using lfs and needs to be done only once, already done in https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template
+git add submissions/ML_prediction_2020.nc  # submission file to be fetched by s2saichallengescorer
+git add notebooks/current_notebook.ipynb  # training and prediction notebook
 git commit -m "commit submission for my_method_name" # whatever message you want
-git tag "submission-my_method_name-0.0.1" # add this tag if this is to be evaluated by the scorer
+git tag "submission-my_method_name-0.0.1"  # add this tag if this is to be evaluated by the s2saichallengescorer
 git push --tags
 ```
 
@@ -138,11 +139,11 @@ Please note that only submitted/tagged commits will be considered for the compet
 If you have code that produces better results after the competition ends and it has
 not been tagged or is tagged after the competition closed then this will not be considered.
 
-### 10. RPSS scoring by `scorer` bot
-The `scorer` will fetch your tagged submissions, score them with RPSS against recalibrated ECMWF real-time forecasts.
+### 10. RPSS scoring by `s2saichallengescorer` bot
+The `s2saichallengescorer` will fetch your tagged submissions, score them with RPSS against recalibrated ECMWF real-time forecasts.
 Your score will be added to the private leaderboard, which will be made public in early November 2021.
 
-The `scorer` is not active for the competition yet.
+The `s2saichallengescorer` is not active for the competition yet.
 
 ## More information
 
