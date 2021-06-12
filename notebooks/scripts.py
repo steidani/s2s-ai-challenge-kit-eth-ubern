@@ -74,6 +74,11 @@ def skill_by_year(preds):
     # ML probabilities
     fct_p = preds
     
+    # check inputs
+    assert_predictions_2020(obs_p)
+    assert_predictions_2020(fct_p)
+
+    
     # climatology
     clim_p = xr.DataArray([1/3, 1/3, 1/3], dims='category', coords={'category':['below normal', 'near normal', 'above normal']}).to_dataset(name='tp')
     clim_p['t2m'] = clim_p['tp']
@@ -82,21 +87,22 @@ def skill_by_year(preds):
     # rps_ML
     rps_ML = xs.rps(obs_p, fct_p, category_edges=None, dim=[], input_distributions='p').compute()
     # rps_clim
-    rps_clim = xs.rps(obs_p, clim_p, category_edges=None, dim='forecast_time', input_distributions='p').compute()
+    rps_clim = xs.rps(obs_p, clim_p, category_edges=None, dim=[], input_distributions='p').compute()
+    
     # rpss
-    rpss = 1 - rps_ML / rps_clim
+    rpss = 1 - (rps_ML / rps_clim)
     
-    rpss = rpss.groupby('forecast_time.year').mean()
-    
-    
-    # cleaning
-    # check for -inf grid cells
-    if (rpss==-np.inf).to_array().any():
-        print(f'find N={(rpss == rpss.min()).sum()} -inf grid cells')
+    # https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/7
 
-        # dirty fix
-        rpss = rpss.clip(-1, 1)
-    # what to do with requested grid cells where NaN is submitted? also penalize, todo: https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/7
+    # penalize
+    penalize = obs_p.where(fct_p!=1, other=-10).mean('category')
+    rpss = rpss.where(penalize!=0,other=-10)
+
+    # clip
+    rpss = rpss.clip(-10, 1)
+
+    # average over all forecasts
+    rpss = rpss.groupby('forecast_time.year').mean()
     
     # weighted area mean
     weights = np.cos(np.deg2rad(np.abs(rpss.latitude)))
@@ -106,47 +112,62 @@ def skill_by_year(preds):
     return scores.to_dataframe('RPSS')
 
 
-def assert_predictions_2020(preds_test):
+def assert_predictions_2020(preds_test, exclude='weekofyear'):
     """Check the variables, coordinates and dimensions of 2020 predictions."""
+    from xarray.testing import assert_equal # doesnt care about attrs but checks coords
+    
     # is dataset
     assert isinstance(preds_test, xr.Dataset)
 
     # has both vars: tp and t2m
-    assert 'tp' in preds_test.data_vars
-    assert 't2m' in preds_test.data_vars
+    if 'data_vars' in exclude:
+        assert 'tp' in preds_test.data_vars
+        assert 't2m' in preds_test.data_vars
     
     ## coords
+    # ignore weekofyear coord if not dim
+    if 'weekofyear' in exclude and 'weekofyear' in preds_test.coords and 'weekofyear' not in preds_test.dims:
+        preds_test = preds_test.drop('weekofyear')
+    
     # forecast_time
-    d = pd.date_range(start='2020-01-02', freq='7D', periods=53)
-    forecast_time = xr.DataArray(d, dims='forecast_time', coords={'forecast_time':d})
-    assert (forecast_time == preds_test['forecast_time']).all()
+    if 'forecast_time' in exclude:
+        d = pd.date_range(start='2020-01-02', freq='7D', periods=53)
+        forecast_time = xr.DataArray(d, dims='forecast_time', coords={'forecast_time':d}, name='forecast_time')
+        assert_equal(forecast_time,  preds_test['forecast_time'])
 
     # longitude
-    lon = np.arange(0., 360., 1.5)
-    longitude = xr.DataArray(lon, dims='longitude', coords={'longitude': lon})
-    assert (longitude == preds_test['longitude']).all()
-    
+    if 'longitude' in exclude:
+        lon = np.arange(0., 360., 1.5)
+        longitude = xr.DataArray(lon, dims='longitude', coords={'longitude': lon}, name='longitude')
+        assert_equal(longitude, preds_test['longitude'])
+
     # latitude
-    lat = np.arange(90., -90.1, 1.5)
-    latitude = xr.DataArray(lat, dims='latitude', coords={'latitude': lat})
-    assert (latitude == preds_test['latitude']).all()
+    if 'latitude' in exclude:
+        lat = np.arange(-90., 90.1, 1.5)[::-1]
+        latitude = xr.DataArray(lat, dims='latitude', coords={'latitude': lat}, name='latitude')
+        assert_equal(latitude, preds_test['latitude'])
     
     # lead_time
-    lead = [pd.Timedelta(f'{i} d') for i in [14, 28]]
-    lead_time = xr.DataArray(lead, dims='lead_time', coords={'lead_time': lead})
-    assert (lead_time == preds_test['lead_time']).all()
+    if 'lead_time' in exclude:
+        lead = [pd.Timedelta(f'{i} d') for i in [14, 28]]
+        lead_time = xr.DataArray(lead, dims='lead_time', coords={'lead_time': lead}, name='lead_time')
+        assert_equal(lead_time, preds_test['lead_time'])
     
     # category
-    cat = np.array(['below normal', 'near normal', 'above normal'], dtype='<U12')
-    category = xr.DataArray(cat, dims='category', coords={'category': cat})
-    assert (category == preds_test['category']).all()
+    if 'category' in exclude:
+        cat = np.array(['below normal', 'near normal', 'above normal'], dtype='<U12')
+        category = xr.DataArray(cat, dims='category', coords={'category': cat}, name='category')
+        assert_equal(category, preds_test['category'])
     
     # size
-    from dask.utils import format_bytes
-    size_in_MB = float(format_bytes(preds_test.nbytes).split(' ')[0])
-    assert size_in_MB > 50
-    assert size_in_MB < 250
+    if 'size' in exclude:
+        from dask.utils import format_bytes
+        size_in_MB = float(format_bytes(preds_test.nbytes).split(' ')[0])
+        # todo: refine for dtypes
+        assert size_in_MB > 50
+        assert size_in_MB < 250
     
     # no other dims
-    assert set(preds_test.dims) - {'category', 'forecast_time', 'latitude', 'lead_time', 'longitude'} == set()
+    if 'dims' in exclude:
+        assert set(preds_test.dims) - {'category', 'forecast_time', 'latitude', 'lead_time', 'longitude'} == set()
     

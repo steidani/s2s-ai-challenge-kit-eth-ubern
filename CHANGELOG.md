@@ -2,6 +2,15 @@
 
 ### unreleased
 
+- Order of processing gridded `RPSS` to final score: (#7, !9, [s2s-ai-competition-scoring-image!2](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/2), [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
+    1. `RPSS`
+    2. penalize #7 
+    3. `clip(-10,1)`
+    4. mean over `forecast_time`
+    5. spatially weighted mean [90N-60S]
+    6. mean over `lead_time` and `data_vars`
+- Dont forget to `git add current_notebook.ipynb` also to ensure that consistent training pipeline and submission file are tagged, added to notebooks. (!9, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
+- Rerun [`ML_train_and_predict.ipynb`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/ML_train_and_predict.ipynb) (!9, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Fix typo in safeguards in [ML_forecast_template.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/ML_forecast_template.ipynb): "We did NOT use `test` explicitly in training or implicitly in incrementally adjusting parameters."" (!8, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Add notebooks showcasing accessing output of different models from different sources: (!2, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
     - S2S-Project models:
