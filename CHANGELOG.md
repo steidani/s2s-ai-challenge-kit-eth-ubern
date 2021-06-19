@@ -1,8 +1,12 @@
 # CHANGELOG
 
-### unreleased
+### *unreleased*
 
-- Recreate biweekly renku datasets with `float32` single precision and newly uploaded data to [`climetlab_s2s_ai_challenge`](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge/releases/tag/0.7.0). Before `lead_time` in `tp` had a one day shift. These new renku datasets will be used by the [`s2saichallengescorer`](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/3). (#7, !9, https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/22, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
+- 
+
+### 2021-06-19: `v0.3` *release*
+
+- Recreate biweekly renku datasets with `float32` single precision and newly uploaded data to [`climetlab_s2s_ai_challenge`](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge/releases/tag/0.7.0). Before `lead_time` in `tp` had a one day shift. These new renku datasets will be used by the [`s2saichallengescorer`](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/3). (#7, !9, https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/22, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring)). Averaged recalibrated ECMWF RPSS skill value to beat at least: `RPSS = -0.043`, see [`RPSS_verification.ipynb`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/RPSS_verification.ipynb). You should also beat `climatology`, i.e. `RPSS = 0`. 
 - Order of processing gridded `RPSS` to final score: (#7, !9, [s2s-ai-competition-scoring-image!2](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/2), [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
     1. `RPSS`
     2. penalize where `NaN` submitted but value expected #7 
@@ -12,7 +16,7 @@
     6. mean over `lead_time` and `data_vars`
 - Dont forget to `git add current_notebook.ipynb` also to ensure that consistent training pipeline and submission file are tagged, added to notebooks. (!9, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Rerun [`ML_train_and_predict.ipynb`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/ML_train_and_predict.ipynb) (!9, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
-- Fix typo in safeguards in [ML_forecast_template.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/ML_forecast_template.ipynb): "We did NOT use `test` explicitly in training or implicitly in incrementally adjusting parameters."" (!8, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
+- Fix typo in safeguards in [ML_forecast_template.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/ML_forecast_template.ipynb): "We did NOT use `test` explicitly in training or implicitly in incrementally adjusting parameters." (!8, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Add notebooks showcasing accessing output of different models from different sources: (!2, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
     - S2S-Project models:
         - from from European Weather Cloud:
@@ -22,21 +26,21 @@
         - `IRIDL` including overview, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
         - `intake` catalogs for `IRIDL` [`SubX`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/SubX_catalog.yml) and [`S2S`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/S2S_catalog.yml) see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb) (#9 !10, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring)
     - SubX-Project models: `IRIDL` including overview, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
-    - How to access password-protected S2S-Project output from IRIDL with xarray? see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
-    - Access NOAA CPC observations via opendap from `IRIDL`, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb) (#9 !10, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring)
+    - How to access password-protected S2S-Project output from `IRIDL` with `xarray`? see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
+    - Access NOAA CPC observations via opendap from `IRIDL`, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb) (#9 !10, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - fix `netcdf4` version to `1.5.4` for `opendap` to work lazily with `xarray` (!2, !7, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 
 
 ### 2021-05-31: `v0.2` *release*
 
-After this `v0.2` release, this CHANGELOG.md will describe all changes made in this template repository.
+After this `v0.2` release, this `CHANGELOG.md` will describe all changes made in this template repository.
 
 - update `README` how to join competition, please `git pull` if you forked before
 - find status of your submission in `s2s-ai-competition-scoring-image` https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/blob/master/README.md 
 - calculate `RPSS` with respect to climatology (not ECMWF anymore) ([Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
     - update `RPSS_verification.ipynb`
     - update `scorer`: https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image ([Tasko Olevski](https://renkulab.io/gitlab/tasko.olevski), [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
-    - Averaged ECMWF RPSS skill value to beat at least: -0.0070
+    - Averaged ECMWF RPSS skill value to beat at least: `-0.0070`
 
 
 ### 2021-05-26: `v0.1` *pre-release*
