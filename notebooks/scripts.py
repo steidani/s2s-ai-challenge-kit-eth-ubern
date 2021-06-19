@@ -19,7 +19,7 @@ def download(varlist_forecast=['tp','t2m'],
     cml.settings.set("cache-directory", cache_path)
     """
     if isinstance(center_list, str):
-        model_list = [center_list]
+        center_list = [center_list]
     if isinstance(varlist_forecast, str):
         varlist_forecast = [varlist_forecast]
 
@@ -27,11 +27,11 @@ def download(varlist_forecast=['tp','t2m'],
     
     if forecast_dataset_labels:
         print(f'Downloads variables {varlist_forecast} from datasets {forecast_dataset_labels} from center {center_list} in {format} format.')
-        for model in model_list:
+        for center in center_list:
             for ds in forecast_dataset_labels:
                 for parameter in varlist_forecast: 
                     try:
-                        cml.load_dataset(f"s2s-ai-challenge-{ds}", origin=model, parameter=varlist_forecast, format=format).to_xarray()
+                        cml.load_dataset(f"s2s-ai-challenge-{ds}", origin=center, parameter=varlist_forecast, format=format).to_xarray()
                     except:
                         pass
     if obs_dataset_labels:
