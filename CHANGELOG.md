@@ -2,10 +2,11 @@
 
 ### unreleased
 
+- Recreate biweekly renku datasets with `float32` single precision and newly uploaded data to [`climetlab_s2s_ai_challenge`](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge/releases/tag/0.7.0). Before `lead_time` in `tp` had a one day shift. These new renku datasets will be used by the [`s2saichallengescorer`](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/3). (#7, !9, https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/22, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Order of processing gridded `RPSS` to final score: (#7, !9, [s2s-ai-competition-scoring-image!2](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/2), [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
     1. `RPSS`
-    2. penalize #7 
-    3. `clip(-10,1)`
+    2. penalize where `NaN` submitted but value expected #7 
+    3. `clip(-10,1)`: prevent too negative values
     4. mean over `forecast_time`
     5. spatially weighted mean [90N-60S]
     6. mean over `lead_time` and `data_vars`
