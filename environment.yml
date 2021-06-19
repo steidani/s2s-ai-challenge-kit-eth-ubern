@@ -24,8 +24,8 @@ dependencies:
   - netcdf4
   - pip
   - pip:
-    - climetlab >= 0.7.0
-    - climetlab_s2s_ai_challenge >= 0.6.3
+    - climetlab >= 0.8.0
+    - climetlab_s2s_ai_challenge >= 0.7.1
     - configargparse # for weatherbench
     - netcdf4==1.5.4
 prefix: "/opt/conda"
