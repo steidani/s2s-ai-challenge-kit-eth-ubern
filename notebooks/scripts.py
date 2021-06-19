@@ -1,8 +1,53 @@
 import xarray as xr
 import pandas as pd
 import numpy as np
+import climetlab_s2s_ai_challenge
+import climetlab as cml
 
 cache_path = '../data'
+
+
+def download(varlist_forecast=['tp','t2m'],
+             center_list=['ecwmf'],
+             forecast_dataset_labels=['hindcast-input','forecast-input'],
+             obs_dataset_labels=['hindcast-like-observations','forecast-like-observations'],
+             varlist_observations=['t2m','tp'],
+             benchmark=True,
+             format='netcdf'
+            ):
+    """Download files with climetlab to cache_path. Set cache_path:
+    cml.settings.set("cache-directory", cache_path)
+    """
+    if isinstance(center_list, str):
+        model_list = [center_list]
+    if isinstance(varlist_forecast, str):
+        varlist_forecast = [varlist_forecast]
+
+    dates = xr.cftime_range(start='20200102',freq='7D', periods=53).strftime('%Y%m%d').to_list()
+    
+    if forecast_dataset_labels:
+        print(f'Downloads variables {varlist_forecast} from datasets {forecast_dataset_labels} from center {center_list} in {format} format.')
+        for model in model_list:
+            for ds in forecast_dataset_labels:
+                for parameter in varlist_forecast: 
+                    try:
+                        cml.load_dataset(f"s2s-ai-challenge-{ds}", origin=model, parameter=varlist_forecast, format=format).to_xarray()
+                    except:
+                        pass
+    if obs_dataset_labels:
+        print(f'Downloads variables tp and t2m from datasets {obs_dataset_labels} netcdf format. Additionally downloads raw t2m and pr observations with a time dimension.')
+        try:
+            for ds in obs_dataset_labels:
+                for parameter in varlist_observations:
+                    cml.load_dataset(f"s2s-ai-challenge-{ds}", date=dates, parameter=parameter).to_xarray()
+        except:
+            pass
+        # raw
+        cml.load_dataset(f"s2s-ai-challenge-observations", parameter=varlist_observations).to_xarray()
+    if benchmark:
+        cml.load_dataset("s2s-ai-challenge-test-output-benchmark", parameter=['tp','t2m']).to_xarray()
+    print('finished')
+    return
 
 
 def add_valid_time_from_forecast_reference_time_and_lead_time(forecast, init_dim='forecast_time'):
@@ -28,6 +73,79 @@ def add_valid_time_from_forecast_reference_time_and_lead_time(forecast, init_dim
     return forecast
 
 
+def aggregate_biweekly(da):
+    """
+    Aggregate initialized S2S forecasts biweekly for xr.DataArrays.
+    Use ds.map(aggregate_biweekly) for xr.Datasets.
+    
+    Applies to the ECMWF S2S data model: https://confluence.ecmwf.int/display/S2S/Parameters
+    """
+    # biweekly averaging
+    w34 = [pd.Timedelta(f'{i} d') for i in range(14,28)]
+    w34 = xr.DataArray(w34,dims='lead_time', coords={'lead_time':w34})
+    
+    w56 = [pd.Timedelta(f'{i} d') for i in range(28,42)]
+    w56 = xr.DataArray(w56,dims='lead_time', coords={'lead_time':w56})
+    
+    biweekly_lead = [pd.Timedelta(f"{i} d") for i in [14, 28]] # take first day of biweekly average as new coordinate
+
+    v = da.name
+    if climetlab_s2s_ai_challenge.CF_CELL_METHODS[v] == 'sum': # biweekly difference for sum variables: tp and ttr
+        d34 = da.sel(lead_time=pd.Timedelta("28 d")) - da.sel(lead_time=pd.Timedelta("14 d")) # tp from day 14 to day 27
+        d56 = da.sel(lead_time=pd.Timedelta("42 d")) - da.sel(lead_time=pd.Timedelta("28 d")) # tp from day 28 to day 42
+        da_biweekly = xr.concat([d34,d56],'lead_time').assign_coords(lead_time=biweekly_lead)
+    else: # t2m, see climetlab_s2s_ai_challenge.CF_CELL_METHODS # biweekly: mean [day 14, day 27]
+        d34 = da.sel(lead_time=w34).mean('lead_time')
+        d56 = da.sel(lead_time=w56).mean('lead_time')
+        da_biweekly = xr.concat([d34,d56],'lead_time').assign_coords(lead_time=biweekly_lead)
+    
+    da_biweekly = add_valid_time_from_forecast_reference_time_and_lead_time(da_biweekly)
+    da_biweekly['lead_time'].attrs = {'long_name':'forecast_period', 'description': 'Forecast period is the time interval between the forecast reference time and the validity time.',
+                         'aggregate': 'The pd.Timedelta corresponds to the first day of a biweekly aggregate.',
+                         'week34_t2m': 'mean[day 14, 27]',
+                         'week56_t2m': 'mean[day 28, 41]',
+                         'week34_tp': 'day 28 minus day 14',
+                         'week56_tp': 'day 42 minus day 28'}
+    return da_biweekly
+
+
+def ensure_attributes(da, biweekly=False):
+    """Ensure that coordinates and variables have proper attributes. Set biweekly==True to set special comments for the biweely aggregates."""
+    template = cml.load_dataset('s2s-ai-challenge-test-input',parameter='t2m', origin='ecmwf', format='netcdf', date='20200102').to_xarray()
+    for c in da.coords:
+        if c in template.coords:
+            da.coords[c].attrs.update(template.coords[c].attrs)
+    
+    if 'valid_time' in da.coords:
+        da['valid_time'].attrs.update({'long_name': 'validity time',
+                                     'standard_name': 'time',
+                                     'description': 'time for which the forecast is valid',
+                                     'calculate':'forecast_time + lead_time'})
+    if 'forecast_time' in da.coords:
+        da['forecast_time'].attrs.update({'long_name' : 'initial time of forecast', 'standard_name': 'forecast_reference_time',
+                                      'description':'The forecast reference time in NWP is the "data time", the time of the analysis from which the forecast was made. It is not the time for which the forecast is valid.'})
+    # fix tp
+    if da.name == 'tp':
+        da.attrs['units'] = 'kg m-2'
+    if biweekly:
+        da['lead_time'].attrs.update({'standard_name':'forecast_period', 'long_name': 'lead time',
+                                      'description': 'Forecast period is the time interval between the forecast reference time and the validity time.',
+                         'aggregate': 'The pd.Timedelta corresponds to the first day of a biweekly aggregate.',
+                         'week34_t2m': 'mean[14 days, 27 days]',
+                         'week56_t2m': 'mean[28 days, 41 days]',
+                         'week34_tp': '28 days minus 14 days',
+                         'week56_tp': '42 days minus 28 days'})
+        if da.name == 'tp':
+            da.attrs.update({'aggregate_week34': '28 days minus 14 days',
+                      'aggregate_week56': '42 days minus 28 days',
+                      'description': 'https://confluence.ecmwf.int/display/S2S/S2S+Total+Precipitation'})
+        if da.name == 't2m':
+            da.attrs.update({'aggregate_week34': 'mean[14 days, 27 days]',
+                      'aggregate_week56': 'mean[28 days, 41 days]',
+                      'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Surface+Air+Temperature'})
+    return da
+
+
 def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
     """Compute probabilities from ds (observations or forecasts) based on tercile_edges."""
     # broadcast
@@ -48,7 +166,18 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
         # we are using a dry mask as in https://doi.org/10.1175/MWR-D-17-0092.1
         tp_arid_mask = tercile_edges.tp.isel(category_edge=0, lead_time=0, drop=True) > 0.01
         ds_p['tp'] = ds_p['tp'].where(tp_arid_mask)
-    # ds_p = ds_p * 100 # in percent %
+    ds_p['category'].attrs = {'long_name': 'tercile category probabilities', 'units': '1',
+                        'description': 'Probabilities for three tercile categories. All three tercile category probabilities must add up to 1.'}
+    ds_p['tp'].attrs = {'long_name': 'Probability of total precipitation in tercile categories', 'units': '1',
+                      'comment': 'All three tercile category probabilities must add up to 1.',
+                      'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Total+Precipitation'
+                     }
+    ds_p['t2m'].attrs = {'long_name': 'Probability of 2m temperature in tercile categories', 'units': '1',
+                      'comment': 'All three tercile category probabilities must add up to 1.',
+                      'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Surface+Air+Temperature'
+                      }
+    if 'weekofyear' in ds_p.coords:
+        ds_p = ds_p.drop('weekofyear')
     return ds_p
 
 
