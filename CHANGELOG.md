@@ -20,8 +20,10 @@
             - `curl` & `wget`, see [wget_curl.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/wget_curl.ipynb)
             - `intake`, see [intake.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/intake.ipynb)
         - `IRIDL` including overview, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
+        - `intake` catalogs for `IRIDL` [`SubX`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/SubX_catalog.yml) and [`S2S`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/S2S_catalog.yml) see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb) (#9 !10, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring)
     - SubX-Project models: `IRIDL` including overview, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
     - How to access password-protected S2S-Project output from IRIDL with xarray? see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb)
+    - Access NOAA CPC observations via opendap from `IRIDL`, see [IRIDL.ipynb](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/data_access/IRIDL.ipynb) (#9 !10, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring)
 - fix `netcdf4` version to `1.5.4` for `opendap` to work lazily with `xarray` (!2, !7, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 
 
