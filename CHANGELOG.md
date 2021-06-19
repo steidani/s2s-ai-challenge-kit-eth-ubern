@@ -2,9 +2,15 @@
 
 ### *unreleased*
 
-- 
+-
 
-### 2021-06-19: `v0.3` *release*
+
+### 2021-06-19: `v0.3.1` *release*
+
+- Fix `sortby('forecast_time')` for renku datasets (as before). `renku dataset s2s-ai-challenge` tag equals repo tag (!15, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
+
+
+### 2021-06-19: `v0.3.0` *release*
 
 - Recreate biweekly renku datasets with `float32` single precision and newly uploaded data to [`climetlab_s2s_ai_challenge`](https://github.com/ecmwf-lab/climetlab-s2s-ai-challenge/releases/tag/0.7.0). Before `lead_time` in `tp` had a one day shift. These new renku datasets will be used by the [`s2saichallengescorer`](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/3). (#3, #5, !14, https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/22, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring)). Averaged recalibrated ECMWF RPSS skill value to beat at least: `RPSS = -0.043`, see [`RPSS_verification.ipynb`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/notebooks/RPSS_verification.ipynb). You should also beat `climatology`, i.e. `RPSS = 0`. 
 - Order of processing gridded `RPSS` to final score: (#7, !9, [s2s-ai-competition-scoring-image!2](https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/2), [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
