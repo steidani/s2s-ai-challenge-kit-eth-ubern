@@ -2,7 +2,7 @@
 
 ### *unreleased*
 
--
+- add `eccodes` to [`environment.yml`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/environment.yml) to resolve `cfgrib` `ImportError` (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/26, !15, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 
 
 ### 2021-06-19: `v0.3.1` *release*

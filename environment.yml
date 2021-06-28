@@ -18,6 +18,7 @@ dependencies:
   - s3fs
   - intake-xarray
   - cfgrib
+  - eccodes
   - nc-time-axis
   - pydap
   - h5netcdf
