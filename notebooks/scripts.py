@@ -146,11 +146,25 @@ def ensure_attributes(da, biweekly=False):
     return da
 
 
-def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
+def add_year_week_coords(ds):
+    import numpy as np
+    if 'week' not in ds.coords and 'year' not in ds.coords:
+        year = ds.forecast_time.dt.year.to_index().unique()
+        week = (list(np.arange(1,54)))
+        weeks = week * len(year)
+        years = np.repeat(year,len(week))
+        ds.coords["week"] = ("forecast_time", weeks)
+        ds.coords['week'].attrs['description'] = "This week represents the number of forecast_time starting from 1 to 53. Note: This week is different from the ISO week from groupby('forecast_time.weekofyear'), see https://en.wikipedia.org/wiki/ISO_week_date and https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/29"
+        ds.coords["year"] = ("forecast_time", years)
+        ds.coords['year'].attrs['long_name'] = "calendar year"
+    return ds
+
+
+def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None, groupby_coord='week'):
     """Compute probabilities from ds (observations or forecasts) based on tercile_edges."""
     # broadcast
-    if 'forecast_time' not in tercile_edges.dims and 'weekofyear' in tercile_edges.dims:
-        tercile_edges = tercile_edges.sel(weekofyear=ds.forecast_time.dt.weekofyear)
+    ds = add_year_week_coords(ds)
+    tercile_edges = tercile_edges.sel({groupby_coord: ds.coords[groupby_coord]})
     bn = ds < tercile_edges.isel(category_edge=0, drop=True)  # below normal
     n = (ds >= tercile_edges.isel(category_edge=0, drop=True)) & (ds < tercile_edges.isel(category_edge=1, drop=True))  # normal
     an = ds >= tercile_edges.isel(category_edge=1, drop=True)  # above normal
@@ -176,8 +190,10 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None):
                       'comment': 'All three tercile category probabilities must add up to 1.',
                       'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Surface+Air+Temperature'
                       }
-    if 'weekofyear' in ds_p.coords:
-        ds_p = ds_p.drop('weekofyear')
+    if 'year' in ds_p.coords:
+        del ds_p.coords['year']
+    if groupby_coord in ds_p.coords:
+        ds_p = ds_p.drop(groupby_coord)
     return ds_p
 
 
