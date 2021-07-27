@@ -197,7 +197,7 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None, g
     return ds_p
 
 
-def skill_by_year(preds):
+def skill_by_year(preds, adapt=False):
     """Returns pd.Dataframe of RPSS per year."""
     # similar verification_RPSS.ipynb
     # as scorer bot but returns a score for each year
@@ -210,23 +210,31 @@ def skill_by_year(preds):
     # from root
     #renku storage pull data/forecast-like-observations_2020_biweekly_terciled.nc
     #renku storage pull data/hindcast-like-observations_2000-2019_biweekly_terciled.nc
-    
+    cache_path = '../data'
     if 2020 in preds.forecast_time.dt.year:
         obs_p = xr.open_dataset(f'{cache_path}/forecast-like-observations_2020_biweekly_terciled.nc').sel(forecast_time=preds.forecast_time)
     else:
         obs_p = xr.open_dataset(f'{cache_path}/hindcast-like-observations_2000-2019_biweekly_terciled.zarr', engine='zarr').sel(forecast_time=preds.forecast_time)
-
+    
     # ML probabilities
     fct_p = preds
-    
-    # check inputs
-    assert_predictions_2020(obs_p)
-    assert_predictions_2020(fct_p)
 
     
     # climatology
     clim_p = xr.DataArray([1/3, 1/3, 1/3], dims='category', coords={'category':['below normal', 'near normal', 'above normal']}).to_dataset(name='tp')
     clim_p['t2m'] = clim_p['tp']
+    
+    if adapt:
+        # select only obs_p where fct_p forecasts provided
+        for c in ['longitude', 'latitude', 'forecast_time', 'lead_time']:
+            obs_p = obs_p.sel({c:fct_p[c]})
+        obs_p = obs_p[list(fct_p.data_vars)]
+        clim_p = clim_p[list(fct_p.data_vars)]
+    
+    else:
+        # check inputs
+        assert_predictions_2020(obs_p)
+        assert_predictions_2020(fct_p)
     
     ## RPSS
     # rps_ML
@@ -241,7 +249,7 @@ def skill_by_year(preds):
 
     # penalize
     penalize = obs_p.where(fct_p!=1, other=-10).mean('category')
-    rpss = rpss.where(penalize!=0,other=-10)
+    rpss = rpss.where(penalize!=0, other=-10)
 
     # clip
     rpss = rpss.clip(-10, 1)
