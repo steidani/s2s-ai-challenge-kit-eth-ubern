@@ -2,11 +2,15 @@
 
 ### *unreleased*
 
+
+### 2021-07-27: `v0.4` *release*
+
 - add `eccodes` to [`environment.yml`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/environment.yml) to resolve `cfgrib` `ImportError` (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/26, !15, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Create categories by `groupby('week')`. (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/29, !18 [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Sergi Bech Sala](https://renkulab.io/gitlab/sbechsal7) and [Llorenç Lledó](https://renkulab.io/gitlab/llledo))
-- Regrid observations conservatively with [xesmf](https://pangeo-xesmf.readthedocs.io/) (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/32, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Arlan Dirkson](https://renkulab.io/gitlab/arlan.dirkson))
-- Observations now have data at longitude=0 (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/35, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Sergi Bech Sala](https://renkulab.io/gitlab/sbechsal7))
+- Regrid observations `conservative`ly with [xesmf](https://pangeo-xesmf.readthedocs.io/) (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/32, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Arlan Dirkson](https://renkulab.io/gitlab/arlan.dirkson))
+- Observations now have data at `longitude=0` (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/35, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Sergi Bech Sala](https://renkulab.io/gitlab/sbechsal7))
 - Missing `tp` observations after leap days added (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/31, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [David Landry](https://renkulab.io/gitlab/david.landry])
+- `conservative`ly regridded and `groupby('week')` observations are now also used by `s2saichallengescorer` (https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/4, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 
 
 ### 2021-06-19: `v0.3.1` *release*
