@@ -5,11 +5,22 @@
 
 ### 2021-07-27: `v0.4` *release*
 
+---
+**NOTE**
+
+After community feedback, we changed the ground truth observations files. Please update these files into your training pipeline if you used them before:
+- [hindcast-like-observations_2000-2019_biweekly_tercile-edges.nc](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/data/hindcast-like-observations_2000-2019_biweekly_tercile-edges.nc)
+- [hindcast-like-observations_2000-2019_biweekly_deterministic.zarr](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/tree/master/data/hindcast-like-observations_2000-2019_biweekly_deterministic.zarr)
+- [hindcast-like-observations_2000-2019_biweekly_terciled.zarr](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/tree/master/data/hindcast-like-observations_2000-2019_biweekly_terciled.zarr)
+
+---
+
+
 - add `eccodes` to [`environment.yml`](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/blob/master/environment.yml) to resolve `cfgrib` `ImportError` (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/26, !15, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 - Create categories by `groupby('week')`. (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/29, !18 [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Sergi Bech Sala](https://renkulab.io/gitlab/sbechsal7) and [Llorenç Lledó](https://renkulab.io/gitlab/llledo))
 - Regrid observations `conservative`ly with [xesmf](https://pangeo-xesmf.readthedocs.io/) (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/32, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Arlan Dirkson](https://renkulab.io/gitlab/arlan.dirkson))
 - Observations now have data at `longitude=0` (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/35, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [Sergi Bech Sala](https://renkulab.io/gitlab/sbechsal7))
-- Missing `tp` observations after leap days added (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/31, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [David Landry](https://renkulab.io/gitlab/david.landry])
+- Missing `tp` observations after leap days added (https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/issues/31, !18, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring) with help from [David Landry](https://renkulab.io/gitlab/david.landry))
 - `conservative`ly regridded and `groupby('week')` observations are now also used by `s2saichallengescorer` (https://renkulab.io/gitlab/tasko.olevski/s2s-ai-competition-scoring-image/-/merge_requests/4, [Aaron Spring](https://renkulab.io/gitlab/aaron.spring))
 
 
