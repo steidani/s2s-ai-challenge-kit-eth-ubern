@@ -5,9 +5,9 @@ the `s2s-ai-challenge`.
 
 You were likely referred here from the [public website](https://s2s-ai-challenge.github.io/).
 
-If you have already forked this project before June 1st 2021, please fork again or pull recent changes.
+If you have already forked this project, please fork again or pull recent changes.
 Major changes will be also announced on the [challenge website](https://s2s-ai-challenge.github.io/#announcements).
-This template repository will have release tags for orientation.
+This template repository will have release tags to track changes.
 
 Find an overview of [repositories and websites](https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge/-/wikis/Flow-of-information:-Where-do-I-find-what%3F).
 
