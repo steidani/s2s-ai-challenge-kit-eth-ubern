@@ -5,13 +5,55 @@ variables:
 
 stages:
   - build
+  - test
 
 image_build:
   stage: build
   image: docker:stable
+  except:
+    - merge_requests 
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN http://$CI_REGISTRY
   script: |
     CI_COMMIT_SHA_7=$(echo $CI_COMMIT_SHA | cut -c1-7)
     docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA_7 .
     docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA_7
+
+merge_request_build:
+  stage: build
+  image: docker:stable
+  only:
+    - merge_requests
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN http://$CI_REGISTRY
+  script: |
+    docker build --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}-MR .
+    docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}-MR
+
+merge_request_test:
+  stage: test
+  image: 
+    name: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}-MR
+    entrypoint: ['']
+  only:
+    - merge_requests
+  except:
+    # shouldnt run on forks automatically
+    - $PWD != /builds/gitlab/aaron.spring/s2s-ai-challenge-template/
+  before_script:
+    # install
+    - pip install pytest nbmake
+    # clone the project
+    - cd /tmp
+    - renku clone ${CI_REPOSITORY_URL}
+    - cd ${CI_PROJECT_NAME}
+    - echo "Source branch = ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}, Target branch = ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}"
+    # checkout to the source branch
+    - git checkout ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}
+    # pull lfs
+    - renku storage pull template/data/forecast-like-observations_2020_biweekly_terciled.nc
+    - renku storage pull submissions/ML_prediction_2020.nc
+    - renku storage pull template/data/ecmwf_recalibrated_benchmark_2020_biweekly_terciled.nc
+  script:
+    # testing notebook
+    - pytest --nbmake notebooks/RPSS_verification.ipynb
