@@ -37,9 +37,6 @@ merge_request_test:
     entrypoint: ['']
   only:
     - merge_requests
-  except:
-    # shouldnt run on forks automatically
-    - $PWD != /builds/gitlab/aaron.spring/s2s-ai-challenge-template/
   before_script:
     # install
     - pip install pytest nbmake
@@ -50,10 +47,13 @@ merge_request_test:
     - echo "Source branch = ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}, Target branch = ${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}"
     # checkout to the source branch
     - git checkout ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}
+    # initialize submodules
+    - git submodule update --init
     # pull lfs
-    - renku storage pull template/data/forecast-like-observations_2020_biweekly_terciled.nc
     - renku storage pull submissions/ML_prediction_2020.nc
-    - renku storage pull template/data/ecmwf_recalibrated_benchmark_2020_biweekly_terciled.nc
+    # renku storage pull doesn't work on submodules
+    - git -C template lfs pull --include "data/forecast-like-observations_2020_biweekly_terciled.nc"
+    - git -C template lfs pull --include "data/ecmwf_recalibrated_benchmark_2020_biweekly_terciled.nc"
   script:
     # testing notebook
     - pytest --nbmake notebooks/RPSS_verification.ipynb

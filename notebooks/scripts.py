@@ -210,7 +210,7 @@ def skill_by_year(preds, adapt=False):
     # from root
     #renku storage pull data/forecast-like-observations_2020_biweekly_terciled.nc
     #renku storage pull data/hindcast-like-observations_2000-2019_biweekly_terciled.nc
-    cache_path = '../data'
+    cache_path = '../template/data'
     if 2020 in preds.forecast_time.dt.year:
         obs_p = xr.open_dataset(f'{cache_path}/forecast-like-observations_2020_biweekly_terciled.nc').sel(forecast_time=preds.forecast_time)
     else:
