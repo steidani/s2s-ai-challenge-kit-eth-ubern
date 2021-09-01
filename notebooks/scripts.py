@@ -182,11 +182,13 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None, g
         ds_p['tp'] = ds_p['tp'].where(tp_arid_mask)
     ds_p['category'].attrs = {'long_name': 'tercile category probabilities', 'units': '1',
                         'description': 'Probabilities for three tercile categories. All three tercile category probabilities must add up to 1.'}
-    ds_p['tp'].attrs = {'long_name': 'Probability of total precipitation in tercile categories', 'units': '1',
-                      'comment': 'All three tercile category probabilities must add up to 1.',
-                      'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Total+Precipitation'
-                     }
-    ds_p['t2m'].attrs = {'long_name': 'Probability of 2m temperature in tercile categories', 'units': '1',
+    if 'tp' in ds_p.data_vars:                    
+        ds_p['tp'].attrs = {'long_name': 'Probability of total precipitation in tercile categories', 'units': '1',
+                          'comment': 'All three tercile category probabilities must add up to 1.',
+                          'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Total+Precipitation'
+                         }
+    if 't2m' in ds_p.data_vars:                         
+        ds_p['t2m'].attrs = {'long_name': 'Probability of 2m temperature in tercile categories', 'units': '1',
                       'comment': 'All three tercile category probabilities must add up to 1.',
                       'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Surface+Air+Temperature'
                       }
