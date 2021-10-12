@@ -81,7 +81,17 @@ def rm_annualcycle(ds, ds_train):
     ds_stand
     return ds_stand
 
+def rm_tercile_edges(ds, tercile_edges):
+    #remove annual cycle for each location 
+    
+    ds = add_year_week_coords(ds)
 
+    ds_stand = tercile_edges - ds
+
+    ds_stand = ds_stand.sel({'week' : ds.coords['week']})
+    ds_stand = ds_stand.drop(['week','year'])
+    ds_stand
+    return ds_stand 
 
 def get_basis(out_field, r_basis):
     """returns a set of basis functions for the input field, adapted from Scheuerer et al. 2020.
