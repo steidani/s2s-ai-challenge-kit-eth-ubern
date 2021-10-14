@@ -163,6 +163,8 @@ for i  in  range(0, len(input_lats)):
     rad = [4,8,16,32]#[4,6,7,10]
     basis_rad = rad[i]
     #for basis_rad in rad:
+        
+    smoothing = 0 #label smoothing in categorical cross entropy
 # =============================================================================
 # input_lat = slice(70,40)#slice(90,-20)
 # input_lon = slice(60,90) #slice(0,90)  slice(300,360)#negative,positive will not work
@@ -441,8 +443,8 @@ for i  in  range(0, len(input_lats)):
         #cnn.summary()
         
         
-        cnn.compile(loss= 'categorical_crossentropy', metrics=['accuracy'], optimizer=keras.optimizers.Adam(1e-4))#'adam')#my_loss_rps
-        #keras.losses.CategoricalCrossentropy(label_smoothing = 0.0)
+        cnn.compile(loss= keras.losses.CategoricalCrossentropy(label_smoothing = smoothing), metrics=['accuracy'], optimizer=keras.optimizers.Adam(1e-4))#'adam')#my_loss_rps
+        #'categorical_crossentropy'keras.losses.CategoricalCrossentropy(label_smoothing = 0.0)
         
         
         
@@ -479,7 +481,7 @@ for i  in  range(0, len(input_lats)):
                          v).RPSS.values[1]#to_dict()
                      )
         
-        setup_params.append([fold_no, output_lat, output_lon, basis_rad, n_basis, standardization, rmcycle, rmterciles, bs, ep, list(fct_train.keys())])
+        setup_params.append([fold_no, output_lat, output_lon, input_lat, input_lon, basis_rad, smoothing, n_basis, standardization, rmcycle, rmterciles, bs, ep, list(fct_train.keys())])
         #param_rmcycle.append(rmcycle)
         #param_standardization.append(standardization)
         percent_min.append(preds_masked.min().values)
@@ -520,7 +522,7 @@ for i  in  range(0, len(input_lats)):
                          v).RPSS.values[1]#to_dict()
                      )
         
-        setup_params.append([fold_no, output_lat, output_lon, basis_rad, n_basis, standardization, rmcycle, rmterciles, bs, ep*2, list(fct_train.keys())])
+        setup_params.append([fold_no, output_lat, output_lon, input_lat, input_lon, basis_rad, smoothing, n_basis, standardization, rmcycle, rmterciles, bs, ep*2, list(fct_train.keys())])
         #param_rmcycle.append(rmcycle)
         #param_standardization.append(standardization)
         percent_min.append(preds_masked.min().values)
@@ -531,7 +533,7 @@ for i  in  range(0, len(input_lats)):
 
 #results = pd.concat([param_standardization, param_rmcycle, acc_per_fold,loss_per_fold,skill], ignore_index=True)
 
-setup = pd.DataFrame(setup_params, columns = ['fold_no','latitudes', 'longitudes', 'radius_basis_func', 'number_basis_func','standardization', 'rm_annual_cycle', 'rm_tercile_edges', 'batch_size', 'epochs', 'features'])
+setup = pd.DataFrame(setup_params, columns = ['fold_no','output_lats', 'output_lons', 'input_lats', 'input_lons', 'radius_basis_func', 'label_smoothing', 'number_basis_func','standardization', 'rm_annual_cycle', 'rm_tercile_edges', 'batch_size', 'epochs', 'features'])
 #setup_params, #fold_no, input_lat, output_lat, standardization, rmcycle, rmterciles, bs, ep, basis_rad, fct_train.keys()
 
 results_ = pd.DataFrame(np.column_stack([acc_per_fold,loss_per_fold,skill_year1, skill_year2, percent_min, percent_max, history]), #
