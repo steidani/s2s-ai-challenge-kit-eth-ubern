@@ -1,8 +1,8 @@
-'@id': https://renkulab.io/projects/aaron.spring/s2s-ai-challenge-template
+'@id': https://renkulab.io/projects/daniel.steinfeld87/s2s-ai-challenge-kit-eth-ubern
 '@type':
 - http://schema.org/Project
 - http://www.w3.org/ns/prov#Location
-http://schema.org/agent: 0.16.0
+http://schema.org/agent: 0.16.2
 http://schema.org/creator:
   '@id': mailto:aaron.spring@mpimet.mpg.de
   '@type':
