@@ -338,3 +338,4 @@ tags
 .renku/cache
 
 .idea/
+data/
