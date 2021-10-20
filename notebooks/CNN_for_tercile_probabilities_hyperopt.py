@@ -442,9 +442,8 @@ def evaluate(params):
 
             # In[22]:
             # print(f'start fitting model in fold {fold_no}')
-            ep = 5
             hist = cnn.fit(dg_train,
-                           epochs=ep, shuffle=False,
+                           epochs=epochs, shuffle=False,
                            validation_data=dg_valid)
 
             # In[23]:
@@ -482,7 +481,7 @@ if __name__ == '__main__':
                 space=space,
                 algo=tpe.suggest,
                 trials=trials,
-                max_evals=2)
+                max_evals=10)
 
     print("---------------BEST---------------")
     print(best)
