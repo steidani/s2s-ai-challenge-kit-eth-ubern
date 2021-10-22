@@ -93,6 +93,22 @@ def rm_tercile_edges(ds, tercile_edges):
     ds_stand
     return ds_stand 
 
+
+def rm_tercile_edges1(ds, ds_train):
+    #remove annual cycle for each location 
+    ds = add_year_week_coords(ds)
+    ds_train = add_year_week_coords(ds_train)
+    
+    tercile_edges = ds_train.chunk({'forecast_time':-1,'longitude':'auto'}).groupby('week').quantile(q=[1./3.,2./3.], dim='forecast_time').rename({'quantile':'category_edge'}).astype('float32')#groupby('week').mean(['forecast_time'])
+
+    ds_stand = tercile_edges - ds
+
+    ds_stand = ds_stand.sel({'week' : ds.coords['week']})
+    ds_stand = ds_stand.drop(['week','year'])
+    #ds_stand
+    return ds_stand
+
+
 def get_basis(out_field, r_basis):
     """returns a set of basis functions for the input field, adapted from Scheuerer et al. 2020.
 
@@ -157,6 +173,113 @@ def get_basis(out_field, r_basis):
     
     return basis, lats, lons, n_xy, n_basis
 
+class DataGenerator1(keras.utils.Sequence):
+    # this data generator does not select the lead time, it expects to get dataarrays that are 1D/ or dont have a lead_time coordinate
+    # build a data generator, ow it takes too long to convert to numpy. its also probably too large for an efficient training.
+    # creating the data generators takes too much time, probably because everything has to be opened because of rm_annualcycle
+    
+    #returns: list with batches (len(dg_train)= no of batches), each batch consists of two elements X and y
+    def __init__(self, fct, verif,  basis, clim_probs, batch_size=32, shuffle=True, load=True):#, ##always have to supply verif, also for test data
+                 #mean_fct=None, std_fct=None, mean_verif = None, std_verif = None, window_size = 25):
+                     #lead_input, lead_output,
+        """
+        Data generator for WeatherBench data.
+        Template from https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
+
+        Args:
+            fct: forecasts from S2S models: xr.DataArray (xr.Dataset doesnt work properly)
+            verif: not true#observations with same dimensionality (xr.Dataset doesnt work properly)
+            lead_time: Lead_time as in model
+            batch_size: Batch size
+            shuffle: bool. If True, data is shuffled.
+            load: bool. If True, datadet is loaded into RAM.
+            mean: If None, compute mean from data.
+            std: If None, compute standard deviation from data.
+            
+        Todo:
+        - use number in a better way, now uses only ensemble mean forecast
+        - dont use .sel(lead_time=lead_time) to train over all lead_time at once
+        - be sensitive with forecast_time, pool a few around the weekofyear given
+        - use more variables as predictors
+        - predict more variables
+        """
+        
+                
+        self.batch_size = batch_size
+        self.shuffle = shuffle
+        #self.lead_input = lead_input
+        #self.lead_output = lead_output
+        
+        self.basis = basis
+        self.clim_probs = clim_probs
+        
+        ###remove annual cycle here
+        ### add more variables
+        
+        self.fct_data = fct.transpose('forecast_time', ...)#.sel(lead_time=lead_input)
+        #self.fct_mean = self.fct_data.mean('forecast_time').compute() if mean_fct is None else mean_fct.sel(lead_time = lead)
+        #self.fct_std = self.fct_data.std('forecast_time').compute() if std_fct is None else std_fct.sel(lead_time = lead)
+        
+        self.verif_data = verif.transpose('forecast_time', ...)#.sel(lead_time=lead_output)
+        #self.verif_mean = self.verif_data.mean('forecast_time').compute() if mean_verif is None else mean_verif.sel(lead_time = lead)
+        #self.verif_std = self.verif_data.std('forecast_time').compute() if std_verif is None else std_verif.sel(lead_time = lead)
+
+        # Normalize
+        #self.fct_data = (self.fct_data - self.fct_mean) / self.fct_std
+        #self.verif_data = (self.verif_data - self.verif_mean) / self.verif_std
+    
+        
+        self.n_samples = self.fct_data.forecast_time.size
+        #self.forecast_time = self.fct_data.forecast_time
+        #self.n_lats = self.fct_data.latitude.size - self.window_size
+        #self.n_lons = self.fct_data.longitude.size - self.window_size
+
+        self.on_epoch_end()
+
+        # For some weird reason calling .load() earlier messes up the mean and std computations
+        if load:
+            # print('Loading data into RAM')
+            self.fct_data.load()
+
+    def __len__(self):
+        'Denotes the number of batches per epoch'
+        return int(np.ceil(self.n_samples / self.batch_size))
+
+    def __getitem__(self, i):
+        'Generate one batch of data'
+        idxs = self.idxs[i * self.batch_size:(i + 1) * self.batch_size]
+        #lats = self.lats [i * self.batch_size:(i + 1) * self.batch_size]
+        #lons = self.lons[i * self.batch_size:(i + 1) * self.batch_size]
+        ##data comes in a row, not randomly chosen from within train data, if shuffled beforehand,--> stays shuffled because of isel
+        # got all nan if nans not masked
+        X_x = self.fct_data.isel(forecast_time=idxs).fillna(0.).to_array().transpose('forecast_time', ...,'variable').values#.values
+        
+        
+        X_basis = np.repeat(self.basis[np.newaxis,:,:],len(idxs),axis=0)
+        X_clim =  np.repeat(self.clim_probs[np.newaxis,:,:],len(idxs),axis=0)#self.batch_size
+        
+        X = [X_x, X_basis, X_clim]
+        
+        #X = self.fct_data.isel(forecast_time=idxs).isel(latitude = slice(lats,lats + self.window_size), 
+         #                                               longitude = slice(lons,lons + self.window_size)).fillna(0.).values
+        #x_coords = (math.ceil((lats + self.window_size)/2),math.ceil((lons + self.window_size)/2))
+        y = self.verif_data.isel(forecast_time=idxs).stack(Z = ['latitude','longitude']).transpose('forecast_time','Z',...).fillna(0.).values
+        #y = self.verif_data.isel(forecast_time=idxs).fillna(0.).values
+        #y = self.verif_data.isel(forecast_time=idxs).isel(latitude = x_coords[0], 
+         #                                                 longitude = x_coords[1]).fillna(0.).values
+        
+        return X, y # x_coords,
+
+    def on_epoch_end(self):
+        'Updates indexes after each epoch'
+        self.idxs = np.arange(self.n_samples)
+        #self.lats = np.arange(self.n_lats)
+        #self.lons = np.arange(self.n_lons)
+        if self.shuffle == True: ###does this make sense here?
+            np.random.shuffle(self.idxs)#in place 
+            #np.random.shuffle(self.lats)
+            #np.random.shuffle(self.lons)
+            
 class DataGenerator(keras.utils.Sequence):
     # build a data generator, ow it takes too long to convert to numpy. its also probably too large for an efficient training.
     # creating the data generators takes too much time, probably because everything has to be opened because of rm_annualcycle
@@ -290,6 +413,7 @@ def _create_predictions(model, dg, lead, lons, lats, fct_valid, verif_train, lea
     da = da.transpose('forecast_time','category','latitude',...)
     da = da.assign_coords(lead_time=lead_output)
     return da
+
 
 def add_valid_time_single(forecast,  lead_output, init_dim='forecast_time'):
     """Creates valid_time(forecast_time, lead_time) for a single lead time and variable
