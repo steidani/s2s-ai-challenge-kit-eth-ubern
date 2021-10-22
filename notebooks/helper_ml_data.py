@@ -19,7 +19,7 @@ def load_data(data = 'hind_2000-2019', aggregation = 'biweekly', path = 'server'
     """
     Parameters
     ----------
-    data: string, {'hind_2000-2019', 'obs_2000-2019', 'obs_terciled_2000-2019','obs_tercile_edges_2000-2019'}
+    data: string, {'hind_2000-2019', 'obs_2000-2019', 'obs_terciled_2000-2019','obs_tercile_edges_2000-2019', 'forecast_2020', 'obs_2020', 'obs_terciled_2020'}
     aggregation: string, {'biweekly','weekly'}
     path: string or 2-element list, {'server', 'local_n', user-defined path to the data}, 
                     server assumes that this function is called within a file in the home directory on the compute server
@@ -60,9 +60,37 @@ def load_data(data = 'hind_2000-2019', aggregation = 'biweekly', path = 'server'
         
     elif data == 'obs_tercile_edges_2000-2019':
         dat = xr.open_dataset(f'{cache_path}/hindcast-like-observations_2000-2019_biweekly_tercile-edges.nc')
+        
+    elif data == 'forecast_2020':
+        dat_list = []
+        for var in var_list:
+            if (var == 'tp') or (var == 't2m'):
+                if aggregation == 'biweekly':
+                    dat_item = xr.open_zarr('{}/ecmwf_forecast-input_2020_{}_deterministic.zarr'.format(cache_path, aggregation), consolidated=True)
+                else:
+                    dat_item = xr.open_zarr('{}/ecmwf_forecast-input_2020_{}_deterministic.zarr'.format(path_add_vars, aggregation), consolidated=True)
+                var_list = [i for i in var_list if i not in ['tp', 't2m']]
+            else:
+                dat_item = xr.open_zarr('{}/ecmwf_forecast-input_2020_{}_deterministic_{}.zarr'.format(path_add_vars, aggregation,var), consolidated=True)
+            dat_list.append(dat_item)
+        dat = xr.merge(dat_list)
     
+    elif data == 'obs_2020':
+        dat = xr.open_zarr(f'{cache_path}/forecast-like-observations_2020_biweekly_deterministic.zarr', consolidated=True)  
+    
+    elif data == 'obs_terciled_2020':
+        dat = xr.open_dataset(f'{cache_path}/forecast-like-observations_2020_biweekly_terciled.nc')
+    else: print("specified data name is not valid")
     return dat
 
+def clean_coords(dat):
+    #remove unnecessary coords
+    if 'sm20' in dat.keys():
+        dat = dat.isel(depth_below_and_layer = 0 ).reset_coords('depth_below_and_layer', drop=True)
+    elif 'msl' in dat.keys():
+        dat = dat.isel(meanSea = 0).reset_coords('meanSea', drop = True)
+    return dat
+    
 def rm_annualcycle(ds, ds_train):
     #remove annual cycle for each location 
     
@@ -107,6 +135,54 @@ def rm_tercile_edges1(ds, ds_train):
     ds_stand = ds_stand.drop(['week','year'])
     #ds_stand
     return ds_stand
+
+def preprocess_input(fct,v, path_data, lead_input):
+    """preprocess the ensemble forecast input:
+        - compute ensemble mean
+        - remove annual cycle from non-target features
+        - subtract tercile edges from target variable
+        - standardize using the spatial global standard deviation
+        
+        PARAMETERS:
+            fct: (xarray DataSet) contains ensemble forecasts for one lead time
+            v: (str) target variable
+            lead_input: (int) lead time in fct (for isel)
+        RETURNS:
+            fct: (xarray DataSet) contains standardized features
+        """
+
+    #use ensemble mean
+    fct = fct.mean('realization')
+
+    ####remove annual cycle from non-target features       
+    #dont remove annual cycle from land-sea mask and target variable
+    var_list = [i for i in fct.keys() if i not in ['lsm',v,f'{v}_2']]#v_2: for week two data
+    if len(var_list) == 1:
+        fct[var_list] = rm_annualcycle(fct[var_list], fct[var_list])[var_list[0]]
+    elif len(var_list) >1:
+        fct[var_list] = rm_annualcycle(fct[var_list], fct[var_list])
+
+    #####subtract tercile edges from target variable
+    vars_ = [i for i in fct.keys() if i in [v,f'{v}_2']]
+    tercile_edges = load_data(data = 'obs_tercile_edges_2000-2019', aggregation = 'biweekly', path = path_data).isel(lead_time = lead_input)
+    deb = rm_tercile_edges(fct[vars_], tercile_edges[vars_])
+    #deb = rm_tercile_edges1(fct[vars_], fct[vars_])#computes terciles on the fly, by respecting train val split, not necessary here
+   
+    #rename the new tercile features
+    debs = []
+    for var in list(deb.keys()):
+        debs.append(deb[var].assign_coords(category_edge = ['lower_{}'.format(var),'upper_{}'.format(var)]).to_dataset(dim ='category_edge'))
+    deb_renamed = xr.merge(debs)
+    
+    #merge all features and drop original target variable feature
+    fct = xr.merge([fct, deb_renamed])
+    fct = fct.drop_vars(vars_)
+
+    ####standardization
+    fct_std_spatial = fct.std(('latitude','longitude')).mean(('forecast_time'))#this is the spatial standard deviation of the ensemble mean
+    fct = fct / fct_std_spatial
+    
+    return fct
 
 
 def get_basis(out_field, r_basis):
@@ -384,7 +460,89 @@ class DataGenerator(keras.utils.Sequence):
             np.random.shuffle(self.idxs)#in place 
             #np.random.shuffle(self.lats)
             #np.random.shuffle(self.lons)
+ 
             
+def pad_earth(fct, input_dims, output_dims):
+    """pad global imput field east, north, west
+
+    only works for square input and output
+    1.5 is the resolution of the data
+    
+    Parameters:
+    ----------
+    fct: (xarray DataSet)
+    input_dims: (int)
+    output_dims: (int)
+    """
+    pad = int((input_dims - output_dims)/2)
+    print(pad)
+    
+    ###create padding for north pole
+    fct_shift = fct.pad(pad_width = {'longitude' : (0,120)}, mode = 'wrap').shift({'longitude' : 120}).isel(longitude = slice(120, 120 + int(360/1.5)))
+    fct_shift_pad = fct_shift.pad(pad_width = {'latitude' : (pad,0)}, mode = 'reflect')
+    shift_pad = fct_shift_pad.isel(latitude = slice (0,pad))
+    
+    ###add north pole padding to ftc_train
+    fct_lat_pad = xr.concat([shift_pad,  fct], dim = 'latitude')
+    
+    ### pad in the east-west direction
+    fct_padded = fct_lat_pad.pad(pad_width = {'longitude' : (pad,pad)}, mode = 'wrap')
+    #plt.figure()
+    #plt.imshow(hind_padded.isel(forecast_time = 0).lower_t2m.values)
+    return fct_padded
+
+def slide_predict(fct_padded, input_dims, output_dims, cnn, basis, clim_probs):
+    """"slide the model that was trained on one specific patch over the earth to create predictions everywhere between 90N and 60S
+    
+    Parameters:
+    ----------
+    fct_padded: (xarray DataSet) preprocessed forecasts with padding
+    input_dims: (int)
+    output_dims: (int)
+    basis: (numpy array) contains weights of basis functions for the output domain
+    clim_probs: ()
+    
+    Returns:
+    -------
+    prediction: (numpy array) global prediction 
+    
+    """
+    #initialize 1/3 matrix to save predictions
+    prediction = np.ones(shape = (len(fct_padded.forecast_time), int(360/1.5), int(180/1.5) + 1,3))*1/3
+    
+    #iterate over global and create predictions patchwise
+    for lat_i in range(0,int(150/1.5),output_dims):#range(0,int(30/1.5),output_dims):#
+        print(lat_i)
+        #patch_lat = fct_predict.isel(latitude = slice(lat_i, lat_i + input_dims))
+        for lon_i in range(0,int(360/1.5), output_dims):#range(0,int(30/1.5), output_dims):#
+            print(lon_i)
+            patch = fct_padded.isel(longitude = slice(lon_i, lon_i + input_dims), latitude = slice(lat_i, lat_i + input_dims))
+            #print(patch.sizes)
+            
+            preds = cnn.predict([patch.fillna(0.).to_array().transpose('forecast_time', ...,'variable').values, 
+                                           np.repeat(basis[np.newaxis,:,:],len(patch.forecast_time),axis=0),
+                                           np.repeat(clim_probs[np.newaxis,:,:],len(patch.forecast_time),axis=0)]
+                        ).squeeze()
+        
+            preds = Reshape((output_dims, output_dims,3))(preds)#len(lons),len(lats)
+            #preds = tf.transpose(preds, [0,3,1,2])
+            prediction[:,lon_i:(lon_i + output_dims), lat_i:(lat_i + output_dims), :] = preds
+
+    return prediction  
+
+def add_coords(pred, fct_ready_to_predict, global_lats, global_lons, lead_output_coords):
+    da = xr.DataArray(
+                    tf.transpose(pred, [0,3,1,2]),
+                    dims=['forecast_time', 'category','longitude', 'latitude'],
+                    coords={'forecast_time': fct_ready_to_predict.forecast_time, 'category' : ['below normal', 'near normal', 'above normal'],#verif_train.category, 
+                            'latitude': global_lats,
+                            'longitude': global_lons
+                            }
+                )
+    da = da.transpose('category','forecast_time','latitude',...)
+    da = da.assign_coords(lead_time=lead_output_coords)
+    return da
+
 def _create_predictions(model, dg, lead, lons, lats, fct_valid, verif_train, lead_output):
     """Create non-iterative predictions
     returns: prediction in the shape of the input arguments to DataGenerator classe
