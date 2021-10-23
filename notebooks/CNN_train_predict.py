@@ -59,7 +59,7 @@ n_bins = 3
 dropout_rate = 0.4
 hidden_nodes = [10] #they tried different architectures
 bs=32
-ep  = 2
+ep  = 20
 
 sigma = 9# guassian filtering: best sigma for years 2017/2018
 
@@ -233,7 +233,7 @@ fct_2020 = preprocess_input(fct_2020, v, path_data, lead_input)
 
 fct_2020_padded = pad_earth(fct_2020, input_dims, output_dims)
 
-pred_2020 = slide_predict(fct_2020, input_dims, output_dims, cnn, basis, clim_probs)
+pred_2020 = slide_predict(fct_2020_padded, input_dims, output_dims, cnn, basis, clim_probs)
 
 #save raw predictions
 da = add_coords(pred_2020, fct_2020, global_lats, global_lons, lead_output_coords)
