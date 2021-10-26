@@ -45,6 +45,16 @@ v='t2m'
 lead_input = 0#hind_2000_2019.lead_time[0]
 lead_output = 0#obs_2000_2019.lead_time[0]
 
+import os
+os.environ['TF_CUDNN_DETERMINISTIC'] = 'true'
+os.environ['TF_DETERMINISTIC_OPS'] = 'true'
+
+import random as rn
+#set all random seeds
+os.environ['PYTHONHASHSEED'] = '0'
+#np.random.seed(1)
+rn.seed(1254)
+tf.random.set_seed(89)
 #%%
 #params:
     
