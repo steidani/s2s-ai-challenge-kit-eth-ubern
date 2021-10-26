@@ -15,6 +15,20 @@ import tensorflow.keras as keras
 from tensorflow.keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, Reshape, Dot, Add, Activation
 
 
+### set seed to make shuffling in datagenerator reproducible
+np.random.seed(42)
+
+import os
+os.environ['TF_CUDNN_DETERMINISTIC'] = 'true'
+os.environ['TF_DETERMINISTIC_OPS'] = 'true'
+
+import random as rn
+#set all random seeds
+os.environ['PYTHONHASHSEED'] = '0'
+#np.random.seed(1)
+rn.seed(1254)
+tf.random.set_seed(89)
+
 def load_data(data = 'hind_2000-2019', aggregation = 'biweekly', path = 'server', var_list = ['tp','t2m','sm20','sst']):
     """
     Parameters
@@ -478,12 +492,21 @@ def pad_earth(fct, input_dims, output_dims):
     print(pad)
     
     ###create padding for north pole
-    fct_shift = fct.pad(pad_width = {'longitude' : (0,120)}, mode = 'wrap').shift({'longitude' : 120}).isel(longitude = slice(120, 120 + int(360/1.5)))
-    fct_shift_pad = fct_shift.pad(pad_width = {'latitude' : (pad,0)}, mode = 'reflect')
-    shift_pad = fct_shift_pad.isel(latitude = slice (0,pad))
+# =============================================================================
+#     fct_shift = fct.pad(pad_width = {'longitude' : (0,120)}, mode = 'wrap').shift({'longitude' : 120}).isel(longitude = slice(120, 120 + int(360/1.5)))
+#     fct_shift_pad = fct_shift.pad(pad_width = {'latitude' : (pad,0)}, mode = 'reflect')
+#     shift_pad = fct_shift_pad.isel(latitude = slice (0,pad))
+# =============================================================================
     
-    ###add north pole padding to ftc_train
-    fct_lat_pad = xr.concat([shift_pad,  fct], dim = 'latitude')
+    ###create padding for north pole and south pole
+    fct_shift = fct.pad(pad_width = {'longitude' : (0,120)}, mode = 'wrap').shift({'longitude' : 120}).isel(longitude = slice(120, 120 + int(360/1.5)))
+    fct_shift_pad = fct_shift.pad(pad_width = {'latitude' : (pad,2*pad)}, mode = 'reflect')
+    shift_pad_north = fct_shift_pad.isel(latitude = slice (0,pad))
+    shift_pad_south = fct_shift_pad.isel(latitude = slice (157-2*pad, 157))
+    
+    
+    ###add pole padding to ftc_train
+    fct_lat_pad = xr.concat([shift_pad_north,  fct, shift_pad_south], dim = 'latitude')#fct_lat_pad = xr.concat([shift_pad,  fct], dim = 'latitude')
     
     ### pad in the east-west direction
     fct_padded = fct_lat_pad.pad(pad_width = {'longitude' : (pad,pad)}, mode = 'wrap')
@@ -508,10 +531,10 @@ def slide_predict(fct_padded, input_dims, output_dims, cnn, basis, clim_probs):
     
     """
     #initialize 1/3 matrix to save predictions
-    prediction = np.ones(shape = (len(fct_padded.forecast_time), int(360/1.5), int(180/1.5) + 1,3))*1/3
+    prediction = np.ones(shape = (len(fct_padded.forecast_time), int(360/1.5), int(180/1.5) + 10,3))*1/3
     
     #iterate over global and create predictions patchwise
-    for lat_i in range(0,int(150/1.5),output_dims):#range(0,int(30/1.5),output_dims):#
+    for lat_i in range(0,int(180/1.5) + 1,output_dims):#range(0,int(180/1.5),output_dims):#range(int(150/1.5),int(180/1.5)
         print(lat_i)
         #patch_lat = fct_predict.isel(latitude = slice(lat_i, lat_i + input_dims))
         for lon_i in range(0,int(360/1.5), output_dims):#range(0,int(30/1.5), output_dims):#
@@ -527,6 +550,7 @@ def slide_predict(fct_padded, input_dims, output_dims, cnn, basis, clim_probs):
             preds = Reshape((output_dims, output_dims,3))(preds)#len(lons),len(lats)
             #preds = tf.transpose(preds, [0,3,1,2])
             prediction[:,lon_i:(lon_i + output_dims), lat_i:(lat_i + output_dims), :] = preds
+    prediction = prediction[:,:,0:int(180/1.5) + 1,:]
 
     return prediction  
 
