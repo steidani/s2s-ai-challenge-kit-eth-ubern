@@ -182,16 +182,16 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None, g
         ds_p['tp'] = ds_p['tp'].where(tp_arid_mask)
     ds_p['category'].attrs = {'long_name': 'tercile category probabilities', 'units': '1',
                         'description': 'Probabilities for three tercile categories. All three tercile category probabilities must add up to 1.'}
-    if 'tp' in ds_p.data_vars:                    
+    if 'tp' in ds_p.data_vars:
         ds_p['tp'].attrs = {'long_name': 'Probability of total precipitation in tercile categories', 'units': '1',
                           'comment': 'All three tercile category probabilities must add up to 1.',
                           'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Total+Precipitation'
                          }
-    if 't2m' in ds_p.data_vars:                         
+    if 't2m' in ds_p.data_vars:
         ds_p['t2m'].attrs = {'long_name': 'Probability of 2m temperature in tercile categories', 'units': '1',
-                      'comment': 'All three tercile category probabilities must add up to 1.',
-                      'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Surface+Air+Temperature'
-                      }
+                          'comment': 'All three tercile category probabilities must add up to 1.',
+                          'variable_before_categorization': 'https://confluence.ecmwf.int/display/S2S/S2S+Surface+Air+Temperature'
+                          }
     if 'year' in ds_p.coords:
         del ds_p.coords['year']
     if groupby_coord in ds_p.coords:
@@ -199,7 +199,7 @@ def make_probabilistic(ds, tercile_edges, member_dim='realization', mask=None, g
     return ds_p
 
 
-def skill_by_year(preds, adapt=False):
+def skill_by_year(preds, cache_path = '../template/data', adapt=False):
     """Returns pd.Dataframe of RPSS per year."""
     # similar verification_RPSS.ipynb
     # as scorer bot but returns a score for each year
@@ -212,7 +212,7 @@ def skill_by_year(preds, adapt=False):
     # from root
     #renku storage pull data/forecast-like-observations_2020_biweekly_terciled.nc
     #renku storage pull data/hindcast-like-observations_2000-2019_biweekly_terciled.nc
-    cache_path = '../template/data'
+    #cache_path = '../template/data'
     if 2020 in preds.forecast_time.dt.year:
         obs_p = xr.open_dataset(f'{cache_path}/forecast-like-observations_2020_biweekly_terciled.nc').sel(forecast_time=preds.forecast_time)
     else:
@@ -237,27 +237,24 @@ def skill_by_year(preds, adapt=False):
         # check inputs
         assert_predictions_2020(obs_p)
         assert_predictions_2020(fct_p)
-    
-    ## RPSS
+        
     # rps_ML
     rps_ML = xs.rps(obs_p, fct_p, category_edges=None, dim=[], input_distributions='p').compute()
     # rps_clim
     rps_clim = xs.rps(obs_p, clim_p, category_edges=None, dim=[], input_distributions='p').compute()
-    
-    # rpss
-    rpss = 1 - (rps_ML / rps_clim)
-    
-    # https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/7
 
-    # penalize
-    penalize = obs_p.where(fct_p!=1, other=-10).mean('category')
-    rpss = rpss.where(penalize!=0, other=-10)
+    ## RPSS
+    # penalize # https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/7
+    expect = obs_p.sum('category')
+    expect = expect.where(expect > 0.98).where(expect < 1.02)  # should be True if not all NaN
 
+    # https://renkulab.io/gitlab/aaron.spring/s2s-ai-challenge-template/-/issues/50
+    rps_ML = rps_ML.where(expect, other=2)  # assign RPS=2 where value was expected but NaN found
+
+    # following Weigel 2007: https://doi.org/10.1175/MWR3280.1
+    rpss = 1 - (rps_ML.groupby('forecast_time.year').mean() / rps_clim.groupby('forecast_time.year').mean())
     # clip
     rpss = rpss.clip(-10, 1)
-
-    # average over all forecasts
-    rpss = rpss.groupby('forecast_time.year').mean()
     
     # weighted area mean
     weights = np.cos(np.deg2rad(np.abs(rpss.latitude)))
