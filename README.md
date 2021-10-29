@@ -10,7 +10,7 @@ Our approach is based on a simplified version of a convolutional neural network 
 We trained one model for each variable and lead time, i.e., 4 models in total. 
 Each model is trained on a limited domain over Eastern Europe (of approximately 50° x 50°). The model predicts tercile probabilities for the 64 grid cells at the center of the input domain jointly. To obtain a global prediction, we slide this local convolutional neural network over the whole globe (using a stride of 8 grid cells in latitude and longitude direction).
 
-| ![training_domain_sliding.jpg](https://renkulab.io/gitlab/daniel.steinfeld87/s2s-ai-challenge-kit-eth-ubern/-/blob/basic_model/docs/training_domain_sliding.png) | 
+|<p align="center"><img src="docs/training_domain_sliding.png" width="500">| 
 |:--:| 
 | Fig. 1:  Shown are two prediction steps. The red frame marks the input, the orange the output domain of a single prediction. The left input and output domain was used for training and hyperparameter optimization.|
 
@@ -36,7 +36,7 @@ The training of the final models was done on the same domain but using all 20 ye
 
 The final submission is the average of an ensemble of 5 predictions per variable and lead time, obtained by repeating model estimation with different seeds. Each prediction was smoothed using gaussian filtering.  
 
-| ![gaussian_filtering.jpg](https://renkulab.io/gitlab/daniel.steinfeld87/s2s-ai-challenge-kit-eth-ubern/-/blob/basic_model/docs/gaussian_filtering.png) | 
+|<p align="center"><img src="docs/gaussian_filtering.png">|
 |:--:| 
 | Fig. 2:  Raw prediction for one tercile (left panel). Its smoothed counterpart with sigma = 9 in latitude and longitude direction (right panel).|
 
