@@ -7,6 +7,7 @@ Dominik Büeler <dominik.bueeler@kit.edu>
 Jieyu Chen <jieyu.chen@kit.edu>
 Christian Grams <grams@kit.edu>
 Siddharth Kumar Gururani <siddfisher@gmail.com>
+Nina Horat <nina.horat@kit.edu>
 Selina Kiefer <selina.kiefer@kit.edu>
 Nils Koster <nils.koster@kit.edu>
 Sebastian Lerch <sebastian.lerch@kit.edu>
