@@ -12,20 +12,15 @@ import xskillscore as xs
 import tensorflow as tf
 import tensorflow.keras as keras
 
-from tensorflow.keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, Reshape, Dot, Add, Activation
+from tensorflow.keras.layers import Reshape
 
-
-### set seed to make shuffling in datagenerator reproducible
-np.random.seed(42)
-
+#set all random seeds
 import os
 os.environ['TF_CUDNN_DETERMINISTIC'] = 'true'
 os.environ['TF_DETERMINISTIC_OPS'] = 'true'
-
-import random as rn
-#set all random seeds
 os.environ['PYTHONHASHSEED'] = '0'
-#np.random.seed(1)
+import random as rn
+np.random.seed(42)
 rn.seed(1254)
 tf.random.set_seed(89)
 
@@ -138,6 +133,7 @@ def rm_tercile_edges(ds, tercile_edges):
 
 def rm_tercile_edges1(ds, ds_train):
     #remove annual cycle for each location 
+    #used for weekly data, where tercile edges have to be computed first
     ds = add_year_week_coords(ds)
     ds_train = add_year_week_coords(ds_train)
     
@@ -160,6 +156,7 @@ def preprocess_input(fct,v, path_data, lead_input):
         PARAMETERS:
             fct: (xarray DataSet) contains ensemble forecasts for one lead time
             v: (str) target variable
+            data_path: (str) path used for load_data
             lead_input: (int) lead time in fct (for isel)
         RETURNS:
             fct: (xarray DataSet) contains standardized features
@@ -200,7 +197,7 @@ def preprocess_input(fct,v, path_data, lead_input):
 
 
 def get_basis(out_field, r_basis):
-    """returns a set of basis functions for the input field, adapted from Scheuerer et al. 2020.
+    """returns a set of basis functions for the input field, adapted from Scheuerer et al. (2020) https://journals.ametsoc.org/view/journals/mwre/148/8/mwrD200096.xml
 
     PARAMETERS:
     out_field : (xarray DataArray) basis functions for these lat lon coords will be created
@@ -216,8 +213,8 @@ def get_basis(out_field, r_basis):
     n_basis : number of basis functions
     """  
     
-    #r_basis = 14 #radius of support of basis functions
-    dist_basis = r_basis/2 #distance between centers of basis functions
+    # distance between centers of basis functions
+    dist_basis = r_basis/2
 
     lats = out_field.latitude
     lons = out_field.longitude
@@ -264,28 +261,23 @@ def get_basis(out_field, r_basis):
     return basis, lats, lons, n_xy, n_basis
 
 class DataGenerator1(keras.utils.Sequence):
-    # this data generator does not select the lead time, it expects to get dataarrays that are 1D/ or dont have a lead_time coordinate
-    # build a data generator, ow it takes too long to convert to numpy. its also probably too large for an efficient training.
-    # creating the data generators takes too much time, probably because everything has to be opened because of rm_annualcycle
-    
+    # this data generator does not select the lead time, it expects to get dataarrays that don't have a lead_time coordinate
     #returns: list with batches (len(dg_train)= no of batches), each batch consists of two elements X and y
-    def __init__(self, fct, verif,  basis, clim_probs, batch_size=32, shuffle=True, load=True):#, ##always have to supply verif, also for test data
-                 #mean_fct=None, std_fct=None, mean_verif = None, std_verif = None, window_size = 25):
-                     #lead_input, lead_output,
+
+    def __init__(self, fct, verif,  basis, clim_probs, batch_size=32, shuffle=True, load=True):
         """
         Data generator for WeatherBench data.
         Template from https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
 
         Args:
             fct: forecasts from S2S models: xr.DataArray (xr.Dataset doesnt work properly)
-            verif: not true#observations with same dimensionality (xr.Dataset doesnt work properly)
-            lead_time: Lead_time as in model
+            verif: terciled observations (xr.Dataset doesnt work properly)
+            basis:
+            clim_probs:
             batch_size: Batch size
             shuffle: bool. If True, data is shuffled.
             load: bool. If True, datadet is loaded into RAM.
-            mean: If None, compute mean from data.
-            std: If None, compute standard deviation from data.
-            
+   
         Todo:
         - use number in a better way, now uses only ensemble mean forecast
         - dont use .sel(lead_time=lead_time) to train over all lead_time at once
@@ -293,8 +285,7 @@ class DataGenerator1(keras.utils.Sequence):
         - use more variables as predictors
         - predict more variables
         """
-        
-                
+
         self.batch_size = batch_size
         self.shuffle = shuffle
         #self.lead_input = lead_input
@@ -303,22 +294,9 @@ class DataGenerator1(keras.utils.Sequence):
         self.basis = basis
         self.clim_probs = clim_probs
         
-        ###remove annual cycle here
-        ### add more variables
-        
-        self.fct_data = fct.transpose('forecast_time', ...)#.sel(lead_time=lead_input)
-        #self.fct_mean = self.fct_data.mean('forecast_time').compute() if mean_fct is None else mean_fct.sel(lead_time = lead)
-        #self.fct_std = self.fct_data.std('forecast_time').compute() if std_fct is None else std_fct.sel(lead_time = lead)
-        
-        self.verif_data = verif.transpose('forecast_time', ...)#.sel(lead_time=lead_output)
-        #self.verif_mean = self.verif_data.mean('forecast_time').compute() if mean_verif is None else mean_verif.sel(lead_time = lead)
-        #self.verif_std = self.verif_data.std('forecast_time').compute() if std_verif is None else std_verif.sel(lead_time = lead)
+        self.fct_data = fct.transpose('forecast_time', ...)
+        self.verif_data = verif.transpose('forecast_time', ...)
 
-        # Normalize
-        #self.fct_data = (self.fct_data - self.fct_mean) / self.fct_std
-        #self.verif_data = (self.verif_data - self.verif_mean) / self.verif_std
-    
-        
         self.n_samples = self.fct_data.forecast_time.size
         #self.forecast_time = self.fct_data.forecast_time
         #self.n_lats = self.fct_data.latitude.size - self.window_size
@@ -340,10 +318,11 @@ class DataGenerator1(keras.utils.Sequence):
         idxs = self.idxs[i * self.batch_size:(i + 1) * self.batch_size]
         #lats = self.lats [i * self.batch_size:(i + 1) * self.batch_size]
         #lons = self.lons[i * self.batch_size:(i + 1) * self.batch_size]
-        ##data comes in a row, not randomly chosen from within train data, if shuffled beforehand,--> stays shuffled because of isel
-        # got all nan if nans not masked
-        X_x = self.fct_data.isel(forecast_time=idxs).fillna(0.).to_array().transpose('forecast_time', ...,'variable').values#.values
         
+        ##data comes in a row, not randomly chosen from within train data, if shuffled beforehand --> stays shuffled because of isel
+
+        # got all nan if nans not masked
+        X_x = self.fct_data.isel(forecast_time=idxs).fillna(0.).to_array().transpose('forecast_time', ...,'variable').values
         
         X_basis = np.repeat(self.basis[np.newaxis,:,:],len(idxs),axis=0)
         X_clim =  np.repeat(self.clim_probs[np.newaxis,:,:],len(idxs),axis=0)#self.batch_size
@@ -351,12 +330,12 @@ class DataGenerator1(keras.utils.Sequence):
         X = [X_x, X_basis, X_clim]
         
         #X = self.fct_data.isel(forecast_time=idxs).isel(latitude = slice(lats,lats + self.window_size), 
-         #                                               longitude = slice(lons,lons + self.window_size)).fillna(0.).values
+        #                                                longitude = slice(lons,lons + self.window_size)).fillna(0.).values
         #x_coords = (math.ceil((lats + self.window_size)/2),math.ceil((lons + self.window_size)/2))
         y = self.verif_data.isel(forecast_time=idxs).stack(Z = ['latitude','longitude']).transpose('forecast_time','Z',...).fillna(0.).values
         #y = self.verif_data.isel(forecast_time=idxs).fillna(0.).values
         #y = self.verif_data.isel(forecast_time=idxs).isel(latitude = x_coords[0], 
-         #                                                 longitude = x_coords[1]).fillna(0.).values
+        #                                                  longitude = x_coords[1]).fillna(0.).values
         
         return X, y # x_coords,
 
@@ -365,31 +344,30 @@ class DataGenerator1(keras.utils.Sequence):
         self.idxs = np.arange(self.n_samples)
         #self.lats = np.arange(self.n_lats)
         #self.lons = np.arange(self.n_lons)
-        if self.shuffle == True: ###does this make sense here?
+        if self.shuffle == True:
             np.random.shuffle(self.idxs)#in place 
             #np.random.shuffle(self.lats)
             #np.random.shuffle(self.lons)
             
 class DataGenerator(keras.utils.Sequence):
-    # build a data generator, ow it takes too long to convert to numpy. its also probably too large for an efficient training.
-    # creating the data generators takes too much time, probably because everything has to be opened because of rm_annualcycle
-    
+
     #returns: list with batches (len(dg_train)= no of batches), each batch consists of two elements X and y
-    def __init__(self, fct, verif, lead_input, lead_output, basis, clim_probs, batch_size=32, shuffle=True, load=True):#, ##always have to supply verif, also for test data
-                 #mean_fct=None, std_fct=None, mean_verif = None, std_verif = None, window_size = 25):
+    def __init__(self, fct, verif, lead_input, lead_output, basis, clim_probs, batch_size=32, shuffle=True, load=True):
         """
+        This data generator is used if features have different lead time than the labels.
         Data generator for WeatherBench data.
         Template from https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
 
         Args:
             fct: forecasts from S2S models: xr.DataArray (xr.Dataset doesnt work properly)
             verif: not true#observations with same dimensionality (xr.Dataset doesnt work properly)
-            lead_time: Lead_time as in model
+            lead_input: lead time of features
+            lead_output: lead time of labels
+            basis:
+            clim_probs:
             batch_size: Batch size
             shuffle: bool. If True, data is shuffled.
             load: bool. If True, datadet is loaded into RAM.
-            mean: If None, compute mean from data.
-            std: If None, compute standard deviation from data.
             
         Todo:
         - use number in a better way, now uses only ensemble mean forecast
@@ -398,8 +376,7 @@ class DataGenerator(keras.utils.Sequence):
         - use more variables as predictors
         - predict more variables
         """
-        
-                
+
         self.batch_size = batch_size
         self.shuffle = shuffle
         self.lead_input = lead_input
@@ -408,26 +385,10 @@ class DataGenerator(keras.utils.Sequence):
         self.basis = basis
         self.clim_probs = clim_probs
         
-        ###remove annual cycle here
-        ### add more variables
-        
         self.fct_data = fct.transpose('forecast_time', ...).sel(lead_time=lead_input)
-        #self.fct_mean = self.fct_data.mean('forecast_time').compute() if mean_fct is None else mean_fct.sel(lead_time = lead)
-        #self.fct_std = self.fct_data.std('forecast_time').compute() if std_fct is None else std_fct.sel(lead_time = lead)
-        
         self.verif_data = verif.transpose('forecast_time', ...).sel(lead_time=lead_output)
-        #self.verif_mean = self.verif_data.mean('forecast_time').compute() if mean_verif is None else mean_verif.sel(lead_time = lead)
-        #self.verif_std = self.verif_data.std('forecast_time').compute() if std_verif is None else std_verif.sel(lead_time = lead)
-
-        # Normalize
-        #self.fct_data = (self.fct_data - self.fct_mean) / self.fct_std
-        #self.verif_data = (self.verif_data - self.verif_mean) / self.verif_std
-    
         
         self.n_samples = self.fct_data.forecast_time.size
-        #self.forecast_time = self.fct_data.forecast_time
-        #self.n_lats = self.fct_data.latitude.size - self.window_size
-        #self.n_lons = self.fct_data.longitude.size - self.window_size
 
         self.on_epoch_end()
 
@@ -443,39 +404,26 @@ class DataGenerator(keras.utils.Sequence):
     def __getitem__(self, i):
         'Generate one batch of data'
         idxs = self.idxs[i * self.batch_size:(i + 1) * self.batch_size]
-        #lats = self.lats [i * self.batch_size:(i + 1) * self.batch_size]
-        #lons = self.lons[i * self.batch_size:(i + 1) * self.batch_size]
+
         ##data comes in a row, not randomly chosen from within train data, if shuffled beforehand,--> stays shuffled because of isel
         # got all nan if nans not masked
         X_x = self.fct_data.isel(forecast_time=idxs).fillna(0.).to_array().transpose('forecast_time', ...,'variable').values#.values
-        
         
         X_basis = np.repeat(self.basis[np.newaxis,:,:],len(idxs),axis=0)
         X_clim =  np.repeat(self.clim_probs[np.newaxis,:,:],len(idxs),axis=0)#self.batch_size
         
         X = [X_x, X_basis, X_clim]
         
-        #X = self.fct_data.isel(forecast_time=idxs).isel(latitude = slice(lats,lats + self.window_size), 
-         #                                               longitude = slice(lons,lons + self.window_size)).fillna(0.).values
-        #x_coords = (math.ceil((lats + self.window_size)/2),math.ceil((lons + self.window_size)/2))
-        y = self.verif_data.isel(forecast_time=idxs).stack(Z = ['latitude','longitude']).transpose('forecast_time','Z',...).fillna(0.).values
-        #y = self.verif_data.isel(forecast_time=idxs).fillna(0.).values
-        #y = self.verif_data.isel(forecast_time=idxs).isel(latitude = x_coords[0], 
-         #                                                 longitude = x_coords[1]).fillna(0.).values
-        
-        return X, y # x_coords,
+        y = self.verif_data.isel(forecast_time=idxs).stack(Z = ['latitude','longitude']).transpose('forecast_time','Z',...).fillna(0.).values 
+        return X, y
 
     def on_epoch_end(self):
         'Updates indexes after each epoch'
         self.idxs = np.arange(self.n_samples)
-        #self.lats = np.arange(self.n_lats)
-        #self.lons = np.arange(self.n_lons)
-        if self.shuffle == True: ###does this make sense here?
-            np.random.shuffle(self.idxs)#in place 
-            #np.random.shuffle(self.lats)
-            #np.random.shuffle(self.lons)
- 
-            
+        if self.shuffle == True:
+            np.random.shuffle(self.idxs)#in place
+
+
 def pad_earth(fct, input_dims, output_dims):
     """pad global imput field east, north, west
 
@@ -491,13 +439,6 @@ def pad_earth(fct, input_dims, output_dims):
     pad = int((input_dims - output_dims)/2)
     print(pad)
     
-    ###create padding for north pole
-# =============================================================================
-#     fct_shift = fct.pad(pad_width = {'longitude' : (0,120)}, mode = 'wrap').shift({'longitude' : 120}).isel(longitude = slice(120, 120 + int(360/1.5)))
-#     fct_shift_pad = fct_shift.pad(pad_width = {'latitude' : (pad,0)}, mode = 'reflect')
-#     shift_pad = fct_shift_pad.isel(latitude = slice (0,pad))
-# =============================================================================
-    
     ###create padding for north pole and south pole
     fct_shift = fct.pad(pad_width = {'longitude' : (0,120)}, mode = 'wrap').shift({'longitude' : 120}).isel(longitude = slice(120, 120 + int(360/1.5)))
     fct_shift_pad = fct_shift.pad(pad_width = {'latitude' : (pad,2*pad)}, mode = 'reflect')
@@ -506,12 +447,10 @@ def pad_earth(fct, input_dims, output_dims):
     
     
     ###add pole padding to ftc_train
-    fct_lat_pad = xr.concat([shift_pad_north,  fct, shift_pad_south], dim = 'latitude')#fct_lat_pad = xr.concat([shift_pad,  fct], dim = 'latitude')
+    fct_lat_pad = xr.concat([shift_pad_north,  fct, shift_pad_south], dim = 'latitude')
     
     ### pad in the east-west direction
     fct_padded = fct_lat_pad.pad(pad_width = {'longitude' : (pad,pad)}, mode = 'wrap')
-    #plt.figure()
-    #plt.imshow(hind_padded.isel(forecast_time = 0).lower_t2m.values)
     return fct_padded
 
 def slide_predict(fct_padded, input_dims, output_dims, cnn, basis, clim_probs):
@@ -534,10 +473,9 @@ def slide_predict(fct_padded, input_dims, output_dims, cnn, basis, clim_probs):
     prediction = np.ones(shape = (len(fct_padded.forecast_time), int(360/1.5), int(180/1.5) + 10,3))*1/3
     
     #iterate over global and create predictions patchwise
-    for lat_i in range(0,int(180/1.5) + 1,output_dims):#range(0,int(180/1.5),output_dims):#range(int(150/1.5),int(180/1.5)
+    for lat_i in range(0,int(180/1.5) + 1,output_dims):#range(int(150/1.5),int(180/1.5)
         print(lat_i)
-        #patch_lat = fct_predict.isel(latitude = slice(lat_i, lat_i + input_dims))
-        for lon_i in range(0,int(360/1.5), output_dims):#range(0,int(30/1.5), output_dims):#
+        for lon_i in range(0,int(360/1.5), output_dims):#range(0,int(30/1.5), output_dims)
             print(lon_i)
             patch = fct_padded.isel(longitude = slice(lon_i, lon_i + input_dims), latitude = slice(lat_i, lat_i + input_dims))
             #print(patch.sizes)
@@ -558,7 +496,7 @@ def add_coords(pred, fct_ready_to_predict, global_lats, global_lons, lead_output
     da = xr.DataArray(
                     tf.transpose(pred, [0,3,1,2]),
                     dims=['forecast_time', 'category','longitude', 'latitude'],
-                    coords={'forecast_time': fct_ready_to_predict.forecast_time, 'category' : ['below normal', 'near normal', 'above normal'],#verif_train.category, 
+                    coords={'forecast_time': fct_ready_to_predict.forecast_time, 'category' : ['below normal', 'near normal', 'above normal'],
                             'latitude': global_lats,
                             'longitude': global_lons
                             }
@@ -569,23 +507,14 @@ def add_coords(pred, fct_ready_to_predict, global_lats, global_lons, lead_output
 
 def _create_predictions(model, dg, lead, lons, lats, fct_valid, verif_train, lead_output):
     """Create non-iterative predictions
-    returns: prediction in the shape of the input arguments to DataGenerator classe
+    returns: prediction in the shape of the input arguments to DataGenerator class
     """
     
     preds = model.predict(dg).squeeze()
     
     preds = Reshape((len(lons),len(lats),3))(preds)
     preds = tf.transpose(preds, [0,3,1,2])
-    
-    #transform to original shape of input
-    #if dg.verif_dataset:
-    #    da = xr.DataArray(
-    #                preds,
-    #                dims=['forecast_time', 'latitude', 'longitude','variable'],
-    #                coords={'forecast_time': fct_valid.forecast_time, 'latitude': fct_train.latitude,
-    #                        'longitude': fct_train.longitude},
-    #            ).to_dataset() # doesnt work yet
-    #else:
+
     da = xr.DataArray(
                 preds,
                 dims=['forecast_time', 'category','longitude', 'latitude'],
@@ -630,13 +559,12 @@ def single_prediction(cnn, dg, lead, lons, lats, fct_valid, verif_train, lead_ou
                                     
     return preds_test
 
-
-
 def skill_by_year_single(prediction, terciled_obs, v):
-    """version of skill_by_year adjusted to one var and one lead time and flexibel validation period"""
+    """version of skill_by_year adjusted to one var and one lead time and flexibel validation period
+
+    still based on the old version of skill_by_year"""
     fct_p = prediction
     obs_p = terciled_obs
-
 
     # climatology
     clim_p = xr.DataArray([1/3, 1/3, 1/3], dims='category', coords={'category':['below normal', 'near normal', 'above normal']}).to_dataset(name='tp')

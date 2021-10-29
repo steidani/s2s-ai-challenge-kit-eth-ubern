@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+this script is used to train the final model and to create separate predictions for each lead time and variable for 5 different seeds
 
-
-train and predict
+the function train_predict_onevar_onelead trains one model and creates predictions for one lead time, variable and seed.
 """
 
          
@@ -39,26 +39,23 @@ os.environ['PYTHONHASHSEED'] = '0'
 
 def get_data(varlist, path_data):
 # ## Hindcast
-    hind_2000_2019 = load_data(data = 'hind_2000-2019', aggregation = 'biweekly', path = path_data,var_list = varlist)#.isel(lead_time = lead_input)#['tp','t2m','sm20','sst'])#,'lsm', 'msl', var_list = ['tp','t2m'])#path_data)
+    hind_2000_2019 = load_data(data = 'hind_2000-2019', aggregation = 'biweekly', path = path_data,var_list = varlist)
     hind_2000_2019 = clean_coords(hind_2000_2019)
     hind_2000_2019 = hind_2000_2019[varlist]
     
     # ## Observations corresponding to hindcasts
-    obs_2000_2019 = load_data(data = 'obs_2000-2019', aggregation = 'biweekly', path = path_data)#.isel(lead_time = lead_output)
+    obs_2000_2019 = load_data(data = 'obs_2000-2019', aggregation = 'biweekly', path = path_data)
     # terciled
-    obs_2000_2019_terciled = load_data(data = 'obs_terciled_2000-2019', aggregation = 'biweekly', path = path_data)#.isel(lead_time = lead_output)
+    obs_2000_2019_terciled = load_data(data = 'obs_terciled_2000-2019', aggregation = 'biweekly', path = path_data)
     
-    #hind_2000_2019_raw = hind_2000_2019_raw[['t2m','t2m_2']]
-    #hind_2000_2019.assign_coords(lead_time = obs_2000_2019.lead_time)##overwrite lead_time... not ideal but ow strange issues..
-    
-    #mask: same missing values at all forecast_times, masking: only used for label data
+    #mask: same missing values at all forecast_times, only used for label data
     mask = xr.where(obs_2000_2019.notnull(),1,np.nan).mean('forecast_time', skipna = False)
     
     return hind_2000_2019, obs_2000_2019, obs_2000_2019_terciled, mask
 
 def train_patch(fct_train_patch, verif_train_patch, basis, clim_probs, bs, v, n_xy, n_basis):
 
-    # ### create batches
+    # create batches
     print('create batches')
     dg_train = DataGenerator1(fct_train_patch, verif_train_patch, 
                              basis = basis, clim_probs = clim_probs,
@@ -66,9 +63,9 @@ def train_patch(fct_train_patch, verif_train_patch, basis, clim_probs, bs, v, n_
     
     print('finished creating batches')
 
-    # CNN: slightly adapted from Scheuerer et al 2020.
+    # CNN: slightly adapted from Scheuerer et al. (2020) https://journals.ametsoc.org/view/journals/mwre/148/8/mwrD200096.xml
             
-    inp_imgs = Input(shape=(dg_train[0][0][0].shape[1], dg_train[0][0][0].shape[2],dg_train[0][0][0].shape[3],)) #fcts4121,240,
+    inp_imgs = Input(shape=(dg_train[0][0][0].shape[1], dg_train[0][0][0].shape[2],dg_train[0][0][0].shape[3],)) #fcts
     inp_basis = Input(shape=(n_xy,n_basis)) #basis
     inp_cl = Input(shape=(n_xy,n_bins,)) #climatology
     
@@ -96,7 +93,7 @@ def train_patch(fct_train_patch, verif_train_patch, basis, clim_probs, bs, v, n_
     return cnn
 
 def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_2019, obs_2000_2019_terciled, mask, path_data):
-    # ### create datasets
+    # create datasets
     fct_train = hind_2000_2019[[v]].isel(lead_time = lead_time)
     if v == 'tp':
         fct_train = xr.where(fct_train < 0, 0, fct_train)
@@ -117,11 +114,11 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     
     # #### compute basis
     basis, lats, lons, n_xy, n_basis = get_basis(verif_train_patch.isel(category = 0), basis_rad)
-    ##the smaller you choose the radius of the basis functions, the more memory needs to be allocated (a lot more!)
+    ##the smaller you choose the radius of the basis functions, the more memory needs to be allocated
     
     clim_probs = np.log(1/3)*np.ones((n_xy,n_bins))
     
-     #%%
+    #%%
     #### train model for each var and lead time
     cnn = train_patch(fct_train_patch, verif_train_patch, basis, clim_probs, bs, v, n_xy, n_basis)
 
@@ -131,7 +128,7 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     
     #%%           
     ##############################################################################
-    #predict for training data
+    # predict for training data
     
     #vars to get back dataset coords after prediction
     global_lats = fct_train.latitude
@@ -142,7 +139,7 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     #####pad the earth by the required amount
     hind_padded = pad_earth(fct_train, input_dims, output_dims)
     
-    #select years to predict for
+    # select years to predict for
     fct_predict = hind_padded#.sel(forecast_time = slice('2017','2018'))
     
     ### predict globally using the trained local model    
@@ -207,12 +204,12 @@ if __name__ == '__main__':
     input_lat = slice(81,34)#32
     input_lon = slice(49,97)#32
     
-    output_lat = slice(63,52)#8          #slice(69,46)#16
-    output_lon = slice(67,78)#8          #slice(61,85) #16
+    output_lat = slice(63,52)#8
+    output_lon = slice(67,78)#8
         
     #%%
     #load training data
-    path_data = 'server'#'local_n'##['../../../../Data/s2s_ai/data', '../../../../Data/s2s_ai']
+    path_data = 'server'#'local_n'#['../../../../Data/s2s_ai/data', '../../../../Data/s2s_ai']
     hind_2000_2019, obs_2000_2019, obs_2000_2019_terciled, mask = get_data(['t2m', 'tp'], path_data)
     
     
