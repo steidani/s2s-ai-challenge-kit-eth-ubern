@@ -45,10 +45,23 @@ Our local convolutional neural network is a promising calibration method that is
 
 ## Repository structure
 
-All code is in the folder _notebooks_:
+All code relevant to the submission is in the folder _notebooks_:
 -	main_train_predict.ipynb: summarizes the training and prediction pipeline and contains safeguards ticks and details on reproducibility
 -	CNN_train_predict.py: creates separate predictions for each lead time and variable for 5 different seeds
 -	helper_ml_data.py: contains functions used for optimization and training
+
+Additional scripts in the folder _notebooks_:
+-   plots_to_illustrate_approach.py: used to create figures for this readme
+-   climatelab_download_aggregate.ipynb: used to download additional variables (not used in final submission)
+-   RPSS_verification.ipynb: needed for pipeline
+-   scripts.py: helper functions provided by the challenge
+-   param_optimization: contains scripts used for parameter optimization and csv files with the results
+-   old_approaches: contains some early experiments
+
+Data used for the submission:
+-   This model only uses the datasets provided in renku. The data is located in the _data_ folder of the submodule _template_.
+
+
 
 
 
