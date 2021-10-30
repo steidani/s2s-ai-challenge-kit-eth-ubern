@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-more helper functions
+helper functions for KIT S2S database
 """
 import numpy as np
 import pandas as pd
@@ -97,21 +97,11 @@ def aggregate_weekly(da, s2s = False):
     -------
     da_weekly : xarray dataarray containing weekly aggregated quantities
     """
-    if s2s == True: ##this is wrong for variables without a value at lead_time = 0.
+    if s2s == True: # correct for variables without a value at lead_time = 0?
         da = da.assign_coords({'forecast_time': da.time[0].values})
         da = da.expand_dims('forecast_time')
         da = da.assign_coords({'lead_time': da.time - da.time[0]})
         da = da.swap_dims({'time': 'lead_time'})
-
-    #da = da.assign_coords({'forecast_time': da.time[0].values})
-    #da = da.assign_coords({'lead_time': da.time - da.time[0]})
-    #da = da.swap_dims({'time': 'lead_time'})
-    #da = da.assign_coords({'forecast_time': da.time[0]})
-    #da = da.assign_coords({'lead_time': da.time - da.time[0]})
-    
-    # weekly averaging
-    #w1 = [pd.Timedelta(f'{i} d') for i in range(0,7)]
-    #w1 = xr.DataArray(w1,dims='lead_time', coords={'lead_time':w1})
     
     w2 = [pd.Timedelta(f'{i} d') for i in range(7,14)]
     w2 = xr.DataArray(w2,dims='lead_time', coords={'lead_time':w2})
@@ -143,11 +133,6 @@ def aggregate_weekly(da, s2s = False):
         d5 = da.sel(lead_time=pd.Timedelta("35 d")) - da.sel(lead_time=pd.Timedelta("28 d"))
         d6 = da.sel(lead_time=pd.Timedelta("42 d")) - da.sel(lead_time=pd.Timedelta("35 d"))
         
-        #d34 = da.sel(lead_time=pd.Timedelta("28 d")) - da.sel(lead_time=pd.Timedelta("14 d")) # tp from day 14 to day 27
-        #d56 = da.sel(lead_time=pd.Timedelta("42 d")) - da.sel(lead_time=pd.Timedelta("28 d")) # tp from day 28 to day 42
-        
-        #da_weekly = xr.concat([d1,d2,d3,d4,d5,d6],'lead_time').assign_coords(lead_time=biweekly_lead)
-        
     else: # t2m, see climetlab_s2s_ai_challenge.CF_CELL_METHODS # biweekly: mean [day 14, day 27]
         #d1 = da.sel(lead_time=w1).mean('lead_time')
         d2 = da.sel(lead_time=w2).mean('lead_time')
@@ -155,9 +140,6 @@ def aggregate_weekly(da, s2s = False):
         d4 = da.sel(lead_time=w4).mean('lead_time')
         d5 = da.sel(lead_time=w5).mean('lead_time')
         d6 = da.sel(lead_time=w6).mean('lead_time')
-        
-        #d34 = da.sel(lead_time=w34).mean('lead_time')
-        #d56 = da.sel(lead_time=w56).mean('lead_time')
         
     da_weekly = xr.concat([d2,d3,d4,d5,d6],'lead_time').assign_coords(lead_time=weekly_lead)
     
@@ -222,8 +204,7 @@ def get_multiple_forecasts(datapath, date_list, file_type):
         print(d)
         ds_weekly = get_single_forecast(datapath, d, file_type)
         ds_weekly_list.append(ds_weekly)
-        #if d%10 == 0: #maybe better to concat after every tenth dataset
-        #    if d == 10:
+        #maybe better to concat after every tenth dataset
     ds_multiple = xr.concat(ds_weekly_list, dim = 'forecast_time')   
     
     #replace forecast_time and valid_time whenever dates were replaced in the beginning
@@ -231,21 +212,6 @@ def get_multiple_forecasts(datapath, date_list, file_type):
     ds_multiple = add_valid_time_from_forecast_reference_time_and_lead_time(ds_multiple)
     
     return ds_multiple
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #pacific easier to work with, but need to transform back for final prediction
 def get_longitude_name(ds):
@@ -305,8 +271,6 @@ def flip_antimeridian(ds, to='Pacific', lonn='lon'):
     else:
         errmsg = 'to has to be one of [Europe | Pacific] not {}'.format(to)
         raise ValueError(errmsg)
-    
-   # ds = ds.assign_coords(**{lonn: (((ds[lonn] + 180) % 360) - 180)})#ds.assign_coords(**{lonn: (ds[lonn] % 360)})
 
     was_da = isinstance(ds, xr.core.dataarray.DataArray)
     if was_da:
@@ -356,7 +320,7 @@ def select_region(ds, area = None):
         return ds
     elif area == 'south-africa':
         lc = ds.coords["lon"]
-        ds = ds.sel(lat = slice(-50,0)).sel(lon = lc[((lc <=50) | (lc >= (350)))])#ds = ds.sel(lat = slice(-50,0), lon = slice(-10,50))#(lat = slice(-40,-10), lon = slice(0,40))
+        ds = ds.sel(lat = slice(-50,0)).sel(lon = lc[((lc <=50) | (lc >= (350)))])
         return ds
     elif area == 'large_sa':
         lc = ds.coords["lon"]
