@@ -10,7 +10,7 @@ import xarray as xr
 
 xr.set_options(display_style='text')
 
-from helper_ml_data import load_data, get_basis, rm_annualcycle, rm_tercile_edges, DataGenerator, single_prediction, \
+from ..helper_ml_data import load_data, get_basis, rm_annualcycle, rm_tercile_edges, DataGenerator, single_prediction, \
     skill_by_year_single
 
 import warnings

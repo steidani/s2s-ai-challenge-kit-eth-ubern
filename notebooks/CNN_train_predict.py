@@ -97,7 +97,7 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     fct_train = hind_2000_2019[[v]].isel(lead_time = lead_time)
     if v == 'tp':
         fct_train = xr.where(fct_train < 0, 0, fct_train)
-      
+
     verif_train = obs_2000_2019_terciled[v].isel(lead_time = lead_time)
     verif_train = verif_train.where(mask[v].isel(lead_time = lead_time).notnull())
     
@@ -126,7 +126,7 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     #creates a new folder with model details
     #cnn_restored = keras.models.load_model("CNN_patch_2")
     
-    #%%           
+    #%%
     ##############################################################################
     # predict for training data
     
@@ -142,7 +142,7 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     # select years to predict for
     fct_predict = hind_padded#.sel(forecast_time = slice('2017','2018'))
     
-    ### predict globally using the trained local model    
+    ### predict globally using the trained local model
     prediction = slide_predict(fct_predict, input_dims, output_dims, cnn, basis, clim_probs)
     
     da = add_coords(prediction, fct_predict, global_lats, global_lons, lead_output_coords)
@@ -160,7 +160,7 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     #%%%
     ###############################################################################
     ##read 2020 data and create prediction for 2020 data
-            
+
     fct_2020 = load_data(data = 'forecast_2020', aggregation = 'biweekly', path = path_data,var_list = [v]).isel(lead_time = lead_time)
     fct_2020 = clean_coords(fct_2020)[[v]]
     if v == 'tp':
@@ -183,7 +183,6 @@ def train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_20
     return 
 
 if __name__ == '__main__':
- 
     #%%
     #params:
     smoothing = 0.6
@@ -209,21 +208,19 @@ if __name__ == '__main__':
         
     #%%
     #load training data
-    path_data = 'server'#'local_n'#['../../../../Data/s2s_ai/data', '../../../../Data/s2s_ai']
+    path_data = 'local_n'  # 'local_n'#['../../../../Data/s2s_ai/data', '../../../../Data/s2s_ai']
     hind_2000_2019, obs_2000_2019, obs_2000_2019_terciled, mask = get_data(['t2m', 'tp'], path_data)
     
     
     #%%
     for seed in range(10,60,10):
-        
         #use this to create an ensemble of predictions
         tf.random.set_seed(seed)
         np.random.seed(seed)
         import random as rn
         rn.seed(seed)
-            
+
         for v in ['t2m', 'tp']:
             for lead_time in [0,1]:
-        
                 train_predict_onevar_onelead(v, lead_time, seed, hind_2000_2019, obs_2000_2019, obs_2000_2019_terciled, mask, path_data)
 

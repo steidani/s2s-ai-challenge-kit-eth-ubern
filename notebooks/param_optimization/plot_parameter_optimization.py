@@ -9,35 +9,36 @@ import numpy as np
 import seaborn as sb
 import yaml
 
+results_path = '.'
 
 #E2: How large can I make my output domain without loosing skill?
-E2_results = pd.read_csv('param_optimization/E2_results_t2m_34_t2m.csv',sep =';')
+E2_results = pd.read_csv(f'{results_path}/E2_results_t2m_34_t2m.csv',sep =';')
 
 #E1:
-E1_results = pd.read_csv('param_optimization/E1_results_t2m_34_t2m.csv',sep =';')
+E1_results = pd.read_csv(f'{results_path}/E1_results_t2m_34_t2m.csv',sep =';')
 
 #E1 label smoothing
-E1_smooth_results = pd.read_csv('param_optimization/E1_label_smoothing_results_t2m_34_t2m_14_10_2021.csv',sep =';')
+E1_smooth_results = pd.read_csv(f'{results_path}/E1_label_smoothing_results_t2m_34_t2m_14_10_2021.csv',sep =';')
 
 #E1 refined
-E1_ref_results= pd.read_csv('param_optimization/E1_refined_results_t2m_34_t2m_ls0.4.csv',sep =';')
-E1_ref_add = pd.read_csv('param_optimization/E1_label_smoothing_results_t2m_34_t2m_14_10_2021.csv',sep =';')
+E1_ref_results= pd.read_csv(f'{results_path}/E1_refined_results_t2m_34_t2m_ls0.4.csv',sep =';')
+E1_ref_add = pd.read_csv(f'{results_path}/E1_label_smoothing_results_t2m_34_t2m_14_10_2021.csv',sep =';')
 E1_ref_add = E1_ref_add.where(E1_ref_add.label_smoothing == 0.4).dropna()
 E1_ref_results = pd.concat([E1_ref_results, E1_ref_add])
 E1_ref_results.reset_index(inplace = True)
 
-E1_ref_results_06 = pd.read_csv('param_optimization/E1_refined_results_t2m_34_t2m_0.6.csv',sep =';')
+E1_ref_results_06 = pd.read_csv(f'{results_path}/E1_refined_results_t2m_34_t2m_0.6.csv',sep =';')
 E1_ref_results_06 = pd.concat([E1_ref_results_06, E1_ref_add])
 E1_ref_results_06.reset_index(inplace = True)
 
 
 #E4
-E4_results = pd.read_csv('param_optimization/E4_results_t2m_34_t2m_all.csv',sep =';')
+E4_results = pd.read_csv(f'{results_path}/E4_results_t2m_34_t2m_all.csv',sep =';')
 
 #E3
 
-E3_results01 = pd.read_csv('param_optimization/E3_results_t2m_34_t2m_folds_0_1.csv',sep =';')
-E3_results25 = pd.read_csv('param_optimization/E3_results_t2m_34_t2m_folds_2_5.csv',sep =';')
+E3_results01 = pd.read_csv(f'{results_path}/E3_results_t2m_34_t2m_folds_0_1.csv',sep =';')
+E3_results25 = pd.read_csv(f'{results_path}/E3_results_t2m_34_t2m_folds_2_5.csv',sep =';')
 E3_results= pd.concat([E3_results01, E3_results25])
 E3_results.reset_index(inplace = True)
 #%%
