@@ -1,23 +1,22 @@
 """
 in progress: optimization of model-related hyper-parameters
 """
-
+import pandas as pd
 import tensorflow.keras as keras
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, Reshape, Dot, Add, Activation
+from tensorflow.keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, Reshape, Dot, Activation
 
 import numpy as np
-import pandas as pd
 
 import xarray as xr
 xr.set_options(display_style='text')
 
-from helper_ml_data import load_data, get_basis, rm_annualcycle, rm_tercile_edges, DataGenerator, single_prediction, skill_by_year_single
+from notebooks.param_optimization.helper_ml_data import load_data, get_basis, rm_annualcycle, rm_tercile_edges, DataGenerator, single_prediction, skill_by_year_single
 
 import warnings
 warnings.simplefilter("ignore")
 
-from hyperopt import fmin, tpe, hp, STATUS_OK, STATUS_FAIL, Trials
+from hyperopt import fmin, tpe, hp, Trials
 
 # In[2]:
 ### set seed
@@ -56,6 +55,19 @@ percent_min = []
 percent_max = []
 history = []
 
+global data
+data = pd.DataFrame(columns=['activation_function',
+                             'learning_rate',
+                             'batch_size',
+                             'dropout_rate',
+                             'epochs',
+                             'smoothing',
+                             'fold',
+                             'rpss',
+                             'accuracy',
+                             'loss'])
+
+
 def get_lats_lons():
     input_lats = [slice(60, 55), slice(63, 52), slice(69, 46), slice(81, 34)]
     input_lons = [slice(70, 75), slice(67, 78), slice(61, 85), slice(49, 97)]
@@ -67,6 +79,7 @@ def get_lats_lons():
 
 
 def evaluate(params):
+    global data
     activation_function, learning_rate, cnn_layers, batch_size, dropout_rate, epochs, smoothing = params
 
     obs_2000_2019_raw, obs_2000_2019_terciled_raw, hind_2000_2019_raw = load()
@@ -124,8 +137,16 @@ def evaluate(params):
         rmcycle = True
         rmterciles = True
 
+        n_folds = 5
+
+        # results
+
+        accuracy = np.empty(shape=n_folds)
+        loss = np.empty(shape=n_folds)
+        rpss = np.empty(shape=n_folds)
+
         # K-fold Cross Validation model evaluation
-        for fold_no in range(0, 1):  # range(0,10):
+        for fold_no in range(0, n_folds):  # range(0,10):
             print(f'fold {fold_no}')
 
             valid_indices = range(fold_no * 2 * 53, fold_no * 2 * 53 + 53 * 2)
@@ -249,8 +270,8 @@ def evaluate(params):
             # ##save model performance
             scores = cnn.evaluate(dg_valid, verbose=0)
 
-            acc_per_fold.append(scores[1])
-            loss_per_fold.append(scores[0])
+            accuracy[fold_no] = scores[1]
+            loss[fold_no] = scores[0]
 
             preds_single = single_prediction(cnn,
                                              [fct_valid.sel(lead_time=lead_input).fillna(0.).to_array().transpose('forecast_time', ..., 'variable').values,
@@ -258,10 +279,21 @@ def evaluate(params):
                                               np.repeat(clim_probs[np.newaxis, :, :], len(valid_indices), axis=0)],
                                              lead_input, lons, lats, fct_valid, verif_train, lead_output)
 
-            result = skill_by_year_single(preds_single,
+            rpss[fold_no] = skill_by_year_single(preds_single,
                                           obs_2000_2019_terciled.isel(forecast_time=valid_indices)[v].sel(lead_time=lead_output),
                                           v).RPSS.mean()
-            return -result  # - for hyperopt to maximize result
+            # add results to output dataframe
+            data = data.append({'activation_function': activation_function,
+                                'learning_rate': learning_rate,
+                                'batch_size': batch_size,
+                                'dropout_rate': dropout_rate,
+                                'epochs': epochs,
+                                'smoothing': smoothing,
+                                'fold': fold_no,
+                                'rpss': rpss[fold_no],
+                                'accuracy': accuracy[fold_no],
+                                'loss': loss[fold_no]}, ignore_index=True)
+        return -rpss.mean()  # - for hyperopt to maximize result, hyperopt should maximize over the RPSS
 
 
 if __name__ == '__main__':
@@ -280,7 +312,7 @@ if __name__ == '__main__':
                 space=space,
                 algo=tpe.suggest,
                 trials=trials,
-                max_evals=10)
+                max_evals=50)
 
     print("---------------BEST---------------")
     print(best)
@@ -288,3 +320,7 @@ if __name__ == '__main__':
     print(trials.best_trial)
     print('trials.argmin')
     print(trials.argmin)
+
+    print(data)
+
+    data.to_csv('hyperopt.csv')
